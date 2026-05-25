@@ -1,0 +1,494 @@
+/* ═══════════════════════════════════════════════════════
+   DentCare Pro — Animations & Visual Enhancements
+   ═══════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   1. PAGE TRANSITIONS
+   ══════════════════════════════════════════════════════ */
+@keyframes pageSlideIn {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pageSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-18px); }
+}
+
+.page-content.active {
+  animation: pageSlideIn 0.28s cubic-bezier(.4,0,.2,1) both;
+}
+.page-content.page-leaving {
+  animation: pageSlideOut 0.18s cubic-bezier(.4,0,.2,1) both;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════
+   2. TOOTH LOADER  (replaces plain spinner)
+   ══════════════════════════════════════════════════════ */
+#toothLoader {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: rgba(10,13,20,.72);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+#toothLoader.visible {
+  display: flex;
+  animation: fadeIn .2s ease both;
+}
+.tooth-loader-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+@keyframes toothLoaderBounce {
+  0%,100% { transform: translateY(0) scaleY(1); }
+  45%     { transform: translateY(-16px) scaleY(1.05); }
+  55%     { transform: translateY(-16px) scaleY(1.05); }
+}
+.tl-tooth {
+  width: 14px;
+  border-radius: 5px 5px 7px 7px;
+  background: var(--accent);
+  animation: toothLoaderBounce 1.1s ease-in-out infinite;
+}
+.tl-tooth:nth-child(1) { height:28px; animation-delay:0s;    background:rgba(0,212,255,.5) }
+.tl-tooth:nth-child(2) { height:38px; animation-delay:.13s;  background:rgba(0,212,255,.65) }
+.tl-tooth:nth-child(3) { height:44px; animation-delay:.26s;  background:var(--accent) }
+.tl-tooth:nth-child(4) { height:44px; animation-delay:.39s;  background:var(--accent) }
+.tl-tooth:nth-child(5) { height:38px; animation-delay:.52s;  background:rgba(0,212,255,.65) }
+.tl-tooth:nth-child(6) { height:28px; animation-delay:.65s;  background:rgba(0,212,255,.5) }
+.tl-tooth:nth-child(7) { height:20px; animation-delay:.78s;  background:rgba(0,212,255,.35) }
+.tooth-loader-text {
+  font-family: 'Syne', sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text2);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  animation: toothLoaderPulse 1.1s ease-in-out infinite;
+}
+@keyframes toothLoaderPulse {
+  0%,100% { opacity:.5 }
+  50%     { opacity:1 }
+}
+
+/* ══════════════════════════════════════════════════════
+   3. SKELETON LOADERS
+   ══════════════════════════════════════════════════════ */
+@keyframes shimmer {
+  0%   { background-position: -600px 0 }
+  100% { background-position:  600px 0 }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg3) 25%,
+    var(--border) 50%,
+    var(--bg3) 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 6px;
+}
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .8rem 1rem;
+  border-bottom: 1px solid rgba(30,38,64,.4);
+}
+.skeleton-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.skeleton-line  { height: 10px; border-radius: 5px; }
+.skeleton-line.w80 { width: 80% }
+.skeleton-line.w60 { width: 60% }
+.skeleton-line.w40 { width: 40% }
+.skeleton-block { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+/* Helper: wrap a table in skeleton state */
+.table-skeleton { padding: .5rem 0; }
+
+/* ══════════════════════════════════════════════════════
+   4. RIPPLE EFFECT ON BUTTONS
+   ══════════════════════════════════════════════════════ */
+.btn-primary,
+.btn-icon,
+.btn-login,
+.action-btn,
+.dash-qa-btn,
+.btn-all {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  transform: scale(0);
+  animation: rippleExpand .55s linear forwards;
+  pointer-events: none;
+}
+@keyframes rippleExpand {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════════════════
+   5. ANIMATED KPI / STAT CARDS  (enhanced dash cards)
+   ══════════════════════════════════════════════════════ */
+@keyframes kpiEntrance {
+  from { opacity: 0; transform: translateY(24px) scale(.95); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.dash-kpi-card {
+  animation: kpiEntrance .45s cubic-bezier(.4,0,.2,1) both;
+  animation-delay: calc(var(--i,0) * 0.09s);
+}
+
+/* Glow ring that pulses on the accent color */
+.dash-kpi-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius);
+  border: 1px solid var(--c, var(--accent));
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.dash-kpi-card:hover::after { opacity: .18; }
+
+/* ══════════════════════════════════════════════════════
+   6. ANIMATED STAT BARS  (used on dashboard/analytics)
+   ══════════════════════════════════════════════════════ */
+@keyframes barSlideIn {
+  from { width: 0 !important; }
+  to   { width: var(--bar-w); }
+}
+.anim-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--accent);
+  width: 0;
+  animation: barSlideIn .9s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay: var(--bar-delay, 0s);
+}
+
+/* ══════════════════════════════════════════════════════
+   7. FLOATING PARTICLE BACKGROUND  (login + topbar)
+   ══════════════════════════════════════════════════════ */
+#loginParticles,
+#dashParticles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+@keyframes particleFloat {
+  0%   { transform: translateY(0)   scale(1);   opacity: 0; }
+  10%  { opacity: var(--p-opacity, .6); }
+  90%  { opacity: var(--p-opacity, .6); }
+  100% { transform: translateY(-110px) scale(.3); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════════════════
+   8. MORPHING HOVER CARDS  (quick-action buttons)
+   ══════════════════════════════════════════════════════ */
+@keyframes cardMorphIn {
+  from { border-radius: var(--radius-sm); }
+  to   { border-radius: 22px; }
+}
+.dash-qa-btn:hover,
+.btn-primary:hover {
+  animation: cardMorphIn .25s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* ══════════════════════════════════════════════════════
+   9. 3D TOOTH CANVAS  (dashboard widget)
+   ══════════════════════════════════════════════════════ */
+.tooth3d-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  animation: fadeIn .4s ease both;
+  flex-wrap: wrap;
+}
+.tooth3d-canvas-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+#tooth3dCanvas {
+  display: block;
+  cursor: grab;
+  border-radius: var(--radius-sm);
+  background: radial-gradient(ellipse at center, rgba(0,212,255,.06) 0%, transparent 70%);
+}
+#tooth3dCanvas:active { cursor: grabbing; }
+.tooth3d-info {
+  flex: 1;
+  min-width: 160px;
+}
+.tooth3d-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: .35rem;
+}
+.tooth3d-sub {
+  font-size: .8rem;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-bottom: .75rem;
+}
+.tooth3d-hint {
+  font-size: .72rem;
+  color: var(--text3);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+/* ══════════════════════════════════════════════════════
+   10. NAV ITEM ENTRANCE  (staggered sidebar load)
+   ══════════════════════════════════════════════════════ */
+@keyframes navSlideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.nav-item {
+  animation: navSlideIn .35s cubic-bezier(.4,0,.2,1) both;
+  animation-delay: calc(var(--ni, 0) * 0.04s);
+}
+
+/* ══════════════════════════════════════════════════════
+   11. MODAL ENTRANCE  (enhanced)
+   ══════════════════════════════════════════════════════ */
+@keyframes modalEntrance {
+  from { opacity: 0; transform: scale(.93) translateY(16px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+.modal-box {
+  animation: modalEntrance .3s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+/* ══════════════════════════════════════════════════════
+   12. TABLE ROW STAGGER  (animate rows in on load)
+   ══════════════════════════════════════════════════════ */
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.data-table tbody tr {
+  animation: rowFadeIn .25s cubic-bezier(.4,0,.2,1) both;
+  animation-delay: calc(var(--ri, 0) * 0.035s);
+}
+
+/* ══════════════════════════════════════════════════════
+   3D WIDGET CONTAINERS
+   ══════════════════════════════════════════════════════ */
+
+/* Jaw Chart */
+.jaw3d-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.jaw3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .75rem;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.jaw3d-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+}
+.jaw3d-hint {
+  font-size: .75rem;
+  color: var(--text3);
+}
+.jaw3d-selected-info {
+  margin-top: .75rem;
+  font-size: .82rem;
+  color: var(--accent);
+  min-height: 1.2rem;
+  transition: opacity .3s;
+}
+#jaw3dMount { width: 100%; }
+
+/* DNA */
+.dna-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.dna-canvas-wrap { flex-shrink: 0; flex: 1; min-width: 160px; }
+.dna-info { flex: 2; min-width: 140px; }
+.dna-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+  margin-bottom: .3rem;
+}
+.dna-sub { font-size: .8rem; color: var(--text2); line-height: 1.55; }
+
+/* Coin Stack */
+.coin3d-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.coin3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .75rem;
+}
+.coin3d-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+}
+.coin3d-hint { font-size: .75rem; color: var(--text3); }
+#coin3dMount { width: 100%; }
+
+/* Orb */
+.orb3d-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.orb3d-canvas-wrap { flex-shrink: 0; }
+.orb3d-info { flex: 1; min-width: 140px; }
+.orb3d-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+  margin-bottom: .35rem;
+}
+.orb3d-queue-count {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: .25rem;
+  transition: color .4s;
+}
+.orb3d-queue-label { font-size: .8rem; color: var(--text2); }
+
+/* Molecule */
+.mol3d-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.mol3d-canvas-wrap { flex-shrink: 0; }
+.mol3d-info { flex: 1; min-width: 140px; }
+.mol3d-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+  margin-bottom: .35rem;
+}
+.mol3d-legend { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+.mol3d-dot {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .72rem;
+  color: var(--text2);
+}
+.mol3d-dot-circle {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Bar Chart 3D */
+.bar3d-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+}
+.bar3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .75rem;
+}
+.bar3d-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--text);
+}
+.bar3d-toggle {
+  display: flex;
+  gap: .3rem;
+}
+.bar3d-toggle button {
+  padding: .3rem .7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-size: .75rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.bar3d-toggle button.active { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,.08); }
+#bar3dMount { width: 100%; }

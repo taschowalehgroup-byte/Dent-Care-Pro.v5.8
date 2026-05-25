@@ -1,0 +1,458 @@
+{
+  "meta": {
+    "app": "DentCare Pro",
+    "version": "2.0",
+    "generated": "2026-03-28",
+    "description": "Full seed database for DentCare Pro dental management system"
+  },
+  "doctors": [
+    {
+      "id": 1,
+      "full_name": "Dr. Ahmed Hassan",
+      "specialty": "General Dentistry",
+      "phone": "01001000001",
+      "email": "ahmed@dentcare.com",
+      "license_no": "LIC-001",
+      "room": "Room 1",
+      "status": "present",
+      "schedule": "Sun-Thu 9AM-5PM",
+      "commissions": {
+        "filling": 20,
+        "crown": 20,
+        "root_canal": 20,
+        "extraction": 20,
+        "implant": 25,
+        "orthodontics": 20,
+        "other": 15
+      }
+    },
+    {
+      "id": 2,
+      "full_name": "Dr. Sarah Mohamed",
+      "specialty": "Orthodontics",
+      "phone": "01001000002",
+      "email": "sarah@dentcare.com",
+      "license_no": "LIC-002",
+      "room": "Room 2",
+      "status": "present",
+      "schedule": "Sun-Thu 10AM-6PM",
+      "commissions": {
+        "filling": 18,
+        "crown": 22,
+        "root_canal": 20,
+        "extraction": 18,
+        "implant": 25,
+        "orthodontics": 30,
+        "other": 15
+      }
+    },
+    {
+      "id": 3,
+      "full_name": "Dr. Karim Ali",
+      "specialty": "Endodontics",
+      "phone": "01001000003",
+      "email": "karim@dentcare.com",
+      "license_no": "LIC-003",
+      "room": "Room 3",
+      "status": "present",
+      "schedule": "Mon-Fri 9AM-4PM",
+      "commissions": {
+        "filling": 20,
+        "crown": 20,
+        "root_canal": 28,
+        "extraction": 20,
+        "implant": 25,
+        "orthodontics": 20,
+        "other": 15
+      }
+    },
+    {
+      "id": 4,
+      "full_name": "Dr. Layla Ibrahim",
+      "specialty": "Periodontics",
+      "phone": "01001000004",
+      "email": "layla@dentcare.com",
+      "license_no": "LIC-004",
+      "room": "Room 4",
+      "status": "present",
+      "schedule": "Sun-Thu 9AM-5PM",
+      "commissions": {
+        "filling": 18,
+        "crown": 20,
+        "root_canal": 20,
+        "extraction": 20,
+        "implant": 25,
+        "orthodontics": 20,
+        "other": 15
+      }
+    },
+    {
+      "id": 5,
+      "full_name": "Dr. Omar Mahmoud",
+      "specialty": "Oral Surgery",
+      "phone": "01001000005",
+      "email": "omar@dentcare.com",
+      "license_no": "LIC-005",
+      "room": "Room 5",
+      "status": "present",
+      "schedule": "Tue-Sat 10AM-6PM",
+      "commissions": {
+        "filling": 18,
+        "crown": 20,
+        "root_canal": 20,
+        "extraction": 25,
+        "implant": 28,
+        "orthodontics": 20,
+        "other": 15
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "VS-18",
+      "role": "admin",
+      "doctor_id": null
+    },
+    {
+      "id": 2,
+      "username": "manager",
+      "password": "1234",
+      "role": "manager",
+      "doctor_id": null
+    },
+    {
+      "id": 3,
+      "username": "receptionist",
+      "password": "1234",
+      "role": "receptionist",
+      "doctor_id": null
+    },
+    {
+      "id": 4,
+      "username": "accountant",
+      "password": "1234",
+      "role": "accountant",
+      "doctor_id": null
+    },
+    {
+      "id": 5,
+      "username": "dr.ahmed",
+      "password": "1234",
+      "role": "doctor",
+      "doctor_id": 1
+    },
+    {
+      "id": 6,
+      "username": "dr.sarah",
+      "password": "1234",
+      "role": "doctor",
+      "doctor_id": 2
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "patient_no": "P-0001",
+      "full_name": "Mohamed Ali Hassan",
+      "phone": "01112345001",
+      "date_of_birth": "1985-06-15",
+      "age": 40,
+      "gender": "male",
+      "email": "m.ali@email.com",
+      "blood_type": "O+",
+      "insurance": "AXA",
+      "medical_conditions": "Hypertension",
+      "allergies": "Penicillin",
+      "dental_concerns": "Sensitivity",
+      "price": 850,
+      "payment_method": "insurance"
+    },
+    {
+      "id": 2,
+      "patient_no": "P-0002",
+      "full_name": "Fatima Ibrahim Sayed",
+      "phone": "01112345002",
+      "date_of_birth": "1993-02-22",
+      "age": 33,
+      "gender": "female",
+      "email": "fatima@email.com",
+      "blood_type": "A+",
+      "insurance": "",
+      "medical_conditions": "",
+      "allergies": "",
+      "dental_concerns": "Braces",
+      "price": 1200,
+      "payment_method": "installment"
+    },
+    {
+      "id": 3,
+      "patient_no": "P-0003",
+      "full_name": "Omar Khaled Nour",
+      "phone": "01112345003",
+      "date_of_birth": "1978-11-08",
+      "age": 47,
+      "gender": "male",
+      "email": "",
+      "blood_type": "B+",
+      "insurance": "",
+      "medical_conditions": "Diabetes",
+      "allergies": "",
+      "dental_concerns": "Implant",
+      "price": 3500,
+      "payment_method": "card"
+    },
+    {
+      "id": 4,
+      "patient_no": "P-0004",
+      "full_name": "Nour Ehab Soliman",
+      "phone": "01112345004",
+      "date_of_birth": "2001-07-30",
+      "age": 24,
+      "gender": "female",
+      "email": "nour@email.com",
+      "blood_type": "AB-",
+      "insurance": "",
+      "medical_conditions": "",
+      "allergies": "Latex",
+      "dental_concerns": "Whitening",
+      "price": 450,
+      "payment_method": "cash"
+    },
+    {
+      "id": 5,
+      "patient_no": "P-0005",
+      "full_name": "Youssef Tarek Samir",
+      "phone": "01112345005",
+      "date_of_birth": "1969-04-12",
+      "age": 57,
+      "gender": "male",
+      "email": "youssef@email.com",
+      "blood_type": "O-",
+      "insurance": "Allianz",
+      "medical_conditions": "Heart disease",
+      "allergies": "Aspirin",
+      "dental_concerns": "Full dentures",
+      "price": 5000,
+      "payment_method": "insurance"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "date": "2026-03-28",
+      "time": "09:00",
+      "duration_min": 60,
+      "priority": "normal",
+      "treatment_type": "Root Canal",
+      "status": "confirmed",
+      "chief_complaint": "Severe toothache lower left",
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "patient_id": 2,
+      "doctor_id": 2,
+      "date": "2026-03-28",
+      "time": "10:30",
+      "duration_min": 45,
+      "priority": "normal",
+      "treatment_type": "Orthodontics",
+      "status": "scheduled",
+      "chief_complaint": "Monthly adjustment",
+      "notes": "Bring previous X-ray"
+    },
+    {
+      "id": 3,
+      "patient_id": 3,
+      "doctor_id": 5,
+      "date": "2026-03-28",
+      "time": "11:00",
+      "duration_min": 90,
+      "priority": "urgent",
+      "treatment_type": "Implant",
+      "status": "confirmed",
+      "chief_complaint": "Implant consultation",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "patient_id": 4,
+      "doctor_id": 1,
+      "date": "2026-03-29",
+      "time": "09:00",
+      "duration_min": 30,
+      "priority": "normal",
+      "treatment_type": "Whitening",
+      "status": "scheduled",
+      "chief_complaint": "",
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "patient_id": 5,
+      "doctor_id": 3,
+      "date": "2026-03-29",
+      "time": "14:00",
+      "duration_min": 120,
+      "priority": "emergency",
+      "treatment_type": "Extraction",
+      "status": "scheduled",
+      "chief_complaint": "Broken molar",
+      "notes": "Handle with care - heart patient"
+    }
+  ],
+  "treatments": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "tooth_number": 36,
+      "treatment_type": "Root Canal",
+      "cost": 850,
+      "date": "2026-03-20",
+      "diagnosis": "Pulpitis",
+      "procedure_notes": "3 canals cleaned and filled",
+      "prescription": "Amoxicillin 500mg x7 days",
+      "follow_up": 1,
+      "follow_up_date": "2026-04-05",
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "patient_id": 2,
+      "doctor_id": 2,
+      "tooth_number": null,
+      "treatment_type": "Orthodontics",
+      "cost": 400,
+      "date": "2026-02-15",
+      "diagnosis": "Crowding",
+      "procedure_notes": "Wire adjustment upper arch",
+      "prescription": "",
+      "follow_up": 1,
+      "follow_up_date": "2026-03-28",
+      "status": "completed"
+    },
+    {
+      "id": 3,
+      "patient_id": 4,
+      "doctor_id": 1,
+      "tooth_number": 11,
+      "treatment_type": "Filling",
+      "cost": 250,
+      "date": "2026-03-10",
+      "diagnosis": "Cavity class II",
+      "procedure_notes": "Composite filling",
+      "prescription": "",
+      "follow_up": 0,
+      "follow_up_date": null,
+      "status": "completed"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Root Canal - Mohamed Ali",
+      "type": "income",
+      "category": "Treatment",
+      "amount": 850,
+      "date": "2026-03-20",
+      "patient_id": 1
+    },
+    {
+      "id": 2,
+      "description": "Orthodontic adjustment - Fatima",
+      "type": "income",
+      "category": "Treatment",
+      "amount": 400,
+      "date": "2026-02-15",
+      "patient_id": 2
+    },
+    {
+      "id": 3,
+      "description": "Dental supplies restock",
+      "type": "expense",
+      "category": "Supplies",
+      "amount": 2300,
+      "date": "2026-03-01",
+      "patient_id": null
+    },
+    {
+      "id": 4,
+      "description": "March clinic rent",
+      "type": "expense",
+      "category": "Rent",
+      "amount": 8000,
+      "date": "2026-03-01",
+      "patient_id": null
+    },
+    {
+      "id": 5,
+      "description": "Composite Filling - Nour",
+      "type": "income",
+      "category": "Treatment",
+      "amount": 250,
+      "date": "2026-03-10",
+      "patient_id": 4
+    },
+    {
+      "id": 6,
+      "description": "Staff salaries - March",
+      "type": "expense",
+      "category": "Salary",
+      "amount": 15000,
+      "date": "2026-03-25",
+      "patient_id": null
+    }
+  ],
+  "inventory": [
+    {
+      "id": 1,
+      "item_name": "Composite Resin A2",
+      "category": "material",
+      "quantity": 12,
+      "min_stock": 5,
+      "unit_price": 180,
+      "supplier": "DentSupply Co."
+    },
+    {
+      "id": 2,
+      "item_name": "Surgical Gloves (L)",
+      "category": "consumable",
+      "quantity": 8,
+      "min_stock": 20,
+      "unit_price": 35,
+      "supplier": "MediGlove Egypt"
+    },
+    {
+      "id": 3,
+      "item_name": "Amoxicillin 500mg",
+      "category": "medication",
+      "quantity": 50,
+      "min_stock": 30,
+      "unit_price": 12,
+      "supplier": "Pharma Plus"
+    },
+    {
+      "id": 4,
+      "item_name": "Dental X-Ray Machine",
+      "category": "equipment",
+      "quantity": 2,
+      "min_stock": 1,
+      "unit_price": 45000,
+      "supplier": "Sirona Egypt"
+    },
+    {
+      "id": 5,
+      "item_name": "Suction Tips",
+      "category": "consumable",
+      "quantity": 3,
+      "min_stock": 10,
+      "unit_price": 25,
+      "supplier": "DentSupply Co."
+    }
+  ]
+}

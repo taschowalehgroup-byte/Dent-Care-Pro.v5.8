@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "description": "Per-doctor appointment index. Auto-updated when appointments are created or deleted.",
+    "updated": "2026-05-24T18:50:56.238Z"
+  },
+  "doctor_schedules": {
+    "1": {
+      "doctor_name": "Dr. Ahmed Hassan",
+      "appointment_ids": [
+        8,
+        9,
+        12,
+        13
+      ]
+    },
+    "2": {
+      "doctor_name": "Dr. Sarah Mohamed",
+      "appointment_ids": [
+        16,
+        20
+      ]
+    },
+    "3": {
+      "doctor_name": "Dr. Karim Ali",
+      "appointment_ids": [
+        5,
+        7,
+        10,
+        11,
+        14,
+        17,
+        18,
+        19,
+        21
+      ]
+    },
+    "4": {
+      "doctor_name": "Dr. Layla Ibrahim",
+      "appointment_ids": [
+        15
+      ]
+    },
+    "5": {
+      "doctor_name": "Dr. Omar Mahmoud",
+      "appointment_ids": [
+        3
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+
+/* ── Validation error state ── */
+input.input-error, select.input-error, textarea.input-error {
+  border-color: var(--red, #ef4444) !important;
+  box-shadow: 0 0 0 2px rgba(239,68,68,.15);
+}
+
+:root { --red: #ef4444; --green: #22c55e; --blue: #3b82f6; --yellow: #f59e0b; --orange: #f97316; }

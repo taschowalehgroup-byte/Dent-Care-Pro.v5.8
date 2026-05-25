@@ -1,0 +1,593 @@
+{
+  "_meta": {
+    "project": "DentCare Pro",
+    "version": "2.0",
+    "languages": ["en", "ar"],
+    "default": "en",
+    "rtl": ["ar"],
+    "description": "Bilingual translation file — English, Arabic"
+  },
+
+  "nav": {
+    "main":          { "en": "Main",            "ar": "الرئيسية" },
+    "clinical":      { "en": "Clinical",         "ar": "سريري" },
+    "administration":{ "en": "Administration",   "ar": "الإدارة" },
+    "dashboard":     { "en": "Dashboard",        "ar": "لوحة التحكم" },
+    "waiting_room":  { "en": "Waiting Room",     "ar": "غرفة الانتظار" },
+    "patients":      { "en": "Patients",         "ar": "المرضى" },
+    "appointments":  { "en": "Appointments",     "ar": "المواعيد" },
+    "calendar":      { "en": "Calendar",         "ar": "التقويم" },
+    "treatments":    { "en": "Treatments",       "ar": "العلاجات" },
+    "doctors":       { "en": "Doctors",          "ar": "الأطباء" },
+    "finance":       { "en": "Finance",          "ar": "المالية" },
+    "inventory":     { "en": "Inventory",        "ar": "المخزون" },
+    "analytics":     { "en": "Analytics",        "ar": "التحليلات" },
+    "commissions":   { "en": "Commissions",      "ar": "العمولات" },
+    "payment_plans": { "en": "Payment Plans",    "ar": "خطط الدفع" },
+    "passwords":     { "en": "Passwords",        "ar": "كلمات المرور" },
+    "discount_codes":{ "en": "Discount Codes",   "ar": "أكواد الخصم" },
+    "backup":        { "en": "Backup",           "ar": "النسخ الاحتياطي" },
+    "messages":      { "en": "Messages",         "ar": "الرسائل" },
+    "settings":      { "en": "Settings",         "ar": "الإعدادات" }
+  },
+
+  "topbar": {
+    "dashboard":       { "en": "Dashboard",              "ar": "لوحة التحكم" },
+    "live_time":       { "en": "Live Time",              "ar": "الوقت الحالي" },
+    "btn_patient":     { "en": "+ Patient",              "ar": "+ مريض" },
+    "btn_appt":        { "en": "+ Appt",                 "ar": "+ موعد" },
+    "lang_toggle_ar":  { "en": "🌐 AR",                  "ar": "🌐 EN" },
+    "check_alerts":    { "en": "Check Follow-up Alerts", "ar": "تنبيهات المتابعة" }
+  },
+
+  "login_screen": {
+    "title":           { "en": "Advanced Dental Management System", "ar": "نظام إدارة طب الأسنان المتقدم" },
+    "label_username":  { "en": "Username",                          "ar": "اسم المستخدم" },
+    "ph_username":     { "en": "— Select your username —",          "ar": "— اختر اسم المستخدم —" },
+    "label_password":  { "en": "Password",                          "ar": "كلمة المرور" },
+    "ph_password":     { "en": "Enter password",                    "ar": "أدخل كلمة المرور" },
+    "btn_login":       { "en": "Access System →",                   "ar": "الدخول إلى النظام ←" },
+    "error_invalid":   { "en": "Invalid credentials",               "ar": "بيانات الاعتماد غير صحيحة" },
+    "btn_forgot":      { "en": "🔒 Forgot Password?",               "ar": "🔒 نسيت كلمة المرور؟" }
+  },
+
+  "page_dashboard": {
+    "kpi_patients":    { "en": "Total Patients",                        "ar": "إجمالي المرضى" },
+    "kpi_appointments":{ "en": "Today's Appts",                         "ar": "مواعيد اليوم" },
+    "kpi_revenue":     { "en": "Monthly Revenue",                       "ar": "إيرادات الشهر" },
+    "hub_title":       { "en": "⚡ Quick Reception Hub",                "ar": "⚡ مركز الاستقبال السريع" },
+    "btn_reg_patient": { "en": "Register New Patient",                  "ar": "تسجيل مريض جديد" },
+    "btn_sch_appt":    { "en": "Schedule Appointment",                  "ar": "جدولة موعد" },
+    "btn_search":      { "en": "Search Records",                        "ar": "البحث في السجلات" },
+    "title_schedule":  { "en": "Today's Schedule",                      "ar": "جدول اليوم" },
+    "btn_view_all":    { "en": "ALL →",                                 "ar": "الكل ←" },
+    "title_actions":   { "en": "Quick Actions",                         "ar": "إجراءات سريعة" },
+    "qa_new_patient":  { "en": "New Patient",                           "ar": "مريض جديد" },
+    "qa_new_appt":     { "en": "New Appointment",                       "ar": "موعد جديد" },
+    "qa_add_tx":       { "en": "Add Transaction",                       "ar": "إضافة معاملة" },
+    "qa_inventory":    { "en": "Inventory",                             "ar": "المخزون" },
+    "title_revenue":   { "en": "Revenue Trend (12 months)",             "ar": "اتجاه الإيرادات" },
+    "kpi_patients_sub":{ "en": "↑ {count} this month",                  "ar": "↑ {count} هذا الشهر" },
+    "kpi_appts_sub":   { "en": "{count} completed",                     "ar": "{count} مكتمل" },
+    "kpi_doctors":     { "en": "Doctors on Duty",                       "ar": "الأطباء المناوبون" },
+    "kpi_doctors_sub": { "en": "Active today",                          "ar": "نشط اليوم" },
+    "kpi_revenue_sub": { "en": "↑ Growing",                             "ar": "↑ في نمو" },
+    "no_appts":        { "en": "No appointments today — Schedule one",  "ar": "لا توجد مواعيد اليوم — قم بجدولة واحد" }
+  },
+
+  "page_waiting_room": {
+    "title":           { "en": "🪑 Waiting Room",      "ar": "🪑 غرفة الانتظار" },
+    "btn_refresh":     { "en": "↺ Refresh",            "ar": "↺ تحديث" },
+    "btn_clear":       { "en": "🗑 Clear All",          "ar": "🗑 مسح الكل" },
+    "btn_add_queue":   { "en": "⏳ Add to Queue",       "ar": "⏳ إضافة للدور" },
+    "btn_register":    { "en": "+ Register Patient",   "ar": "+ تسجيل مريض" }
+  },
+
+  "page_patients": {
+    "ph_search":       { "en": "🔍  Search patients…", "ar": "🔍  البحث عن مرضى…" },
+    "btn_import":      { "en": "⬆ Import",             "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",              "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",               "ar": "⬇ جيسون" },
+    "btn_register":    { "en": "+ Register Patient",   "ar": "+ تسجيل مريض" }
+  },
+
+  "page_appointments": {
+    "filter_all":      { "en": "All",               "ar": "الكل" },
+    "filter_scheduled":{ "en": "Scheduled",         "ar": "مجدول" },
+    "filter_confirmed":{ "en": "Confirmed",         "ar": "مؤكد" },
+    "filter_completed":{ "en": "Completed",         "ar": "مكتمل" },
+    "filter_cancelled":{ "en": "Cancelled",         "ar": "ملغي" },
+    "btn_import":      { "en": "⬆ Import",          "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",           "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",            "ar": "⬇ جيسون" },
+    "btn_reminders":   { "en": "💬 Reminders",       "ar": "💬 تذكيرات" },
+    "btn_schedule":    { "en": "+ Schedule",         "ar": "+ جدولة" }
+  },
+
+  "page_calendar": {
+    "title":           { "en": "🗓️ Calendar",         "ar": "🗓️ التقويم" },
+    "btn_new_appt":    { "en": "+ New Appointment",  "ar": "+ موعد جديد" }
+  },
+
+  "page_doctors": {
+    "title":           { "en": "Medical Staff",      "ar": "الكوادر الطبية" },
+    "btn_import":      { "en": "⬆ Import",           "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",            "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",             "ar": "⬇ جيسون" },
+    "btn_add":         { "en": "+ Add Doctor",       "ar": "+ إضافة طبيب" }
+  },
+
+  "page_finance": {
+    "filter_all":      { "en": "All",                "ar": "الكل" },
+    "filter_income":   { "en": "Income",             "ar": "دخل" },
+    "filter_expense":  { "en": "Expense",            "ar": "مصروف" },
+    "btn_import":      { "en": "⬆ Import",           "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",            "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",             "ar": "⬇ جيسون" },
+    "btn_transaction": { "en": "+ Transaction",      "ar": "+ معاملة" }
+  },
+
+  "page_inventory": {
+    "ph_search":       { "en": "🔍  Search inventory…", "ar": "🔍  بحث في المخزون…" },
+    "btn_import":      { "en": "⬆ Import",              "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",               "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",                "ar": "⬇ جيسون" },
+    "btn_add":         { "en": "+ Add Item",             "ar": "+ إضافة صنف" }
+  },
+
+  "page_passwords": {
+    "title":           { "en": "User Access Management", "ar": "إدارة الوصول" },
+    "admin_tag":       { "en": "Admin Only",              "ar": "للمسؤول فقط" },
+    "btn_import":      { "en": "⬆ Import",                "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",                 "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",                  "ar": "⬇ جيسون" },
+    "btn_requests":    { "en": "🔑 Reset Requests",        "ar": "🔑 طلبات إعادة التعيين" },
+    "btn_new_user":    { "en": "+ New User",               "ar": "+ مستخدم جديد" }
+  },
+
+  "page_treatments": {
+    "title":           { "en": "Treatments",               "ar": "العلاجات" },
+    "ph_search":       { "en": "🔍 Search...",              "ar": "🔍 بحث..." },
+    "btn_import":      { "en": "⬆ Import Excel/JSON",       "ar": "⬆ استيراد Excel/JSON" },
+    "btn_export_excel":{ "en": "⬇ Export Excel",            "ar": "⬇ تصدير Excel" },
+    "btn_export_json": { "en": "⬇ Export JSON",             "ar": "⬇ تصدير JSON" },
+    "btn_add":         { "en": "+ Add Treatment",           "ar": "+ إضافة علاج" }
+  },
+
+  "page_messages": {
+    "title":           { "en": "Messages",       "ar": "الرسائل" },
+    "admin_tag":       { "en": "Admin Only",     "ar": "للمسؤول فقط" },
+    "btn_excel":       { "en": "⬇ Excel",        "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",         "ar": "⬇ جيسون" },
+    "btn_clear":       { "en": "🗑 Clear All",    "ar": "🗑 مسح الكل" }
+  },
+
+  "page_analytics": {
+    "title_rev_exp":   { "en": "Revenue vs Expenses",              "ar": "الإيرادات مقابل المصروفات" },
+    "title_dist":      { "en": "Treatment Distribution",           "ar": "توزيع العلاجات" },
+    "title_perf_pat":  { "en": "Doctor Performance — Patients",    "ar": "أداء الأطباء — المرضى" },
+    "title_perf_rev":  { "en": "Doctor Performance — Revenue",     "ar": "أداء الأطباء — الإيرادات" }
+  },
+
+  "page_settings": {
+    "title":           { "en": "Settings",       "ar": "الإعدادات" }
+  },
+
+  "page_backup": {
+    "title":           { "en": "💾 Backup & Restore", "ar": "💾 النسخ الاحتياطي" },
+    "admin_tag":       { "en": "Admin Only",           "ar": "للمسؤول فقط" },
+    "btn_create":      { "en": "+ Create Backup Now",  "ar": "+ إنشاء نسخة الآن" },
+    "btn_refresh":     { "en": "↺ Refresh",            "ar": "↺ تحديث" },
+    "title_list":      { "en": "All Backups",          "ar": "جميع النسخ الاحتياطية" }
+  },
+
+  "page_discount_codes": {
+    "title":           { "en": "🏷 Discount Codes", "ar": "🏷 أكواد الخصم" },
+    "admin_tag":       { "en": "Admin Only",         "ar": "للمسؤول فقط" },
+    "btn_import":      { "en": "⬆ Import",           "ar": "⬆ استيراد" },
+    "btn_excel":       { "en": "⬇ Excel",            "ar": "⬇ إكسل" },
+    "btn_json":        { "en": "⬇ JSON",             "ar": "⬇ جيسون" },
+    "btn_add":         { "en": "+ Add Code",         "ar": "+ إضافة كود" }
+  },
+
+  "page_commissions": {
+    "title":           { "en": "📊 Doctor Commission Report", "ar": "تقرير عمولات الأطباء" },
+    "opt_all_docs":    { "en": "All Doctors",                  "ar": "جميع الأطباء" },
+    "opt_all_years":   { "en": "All Years",                    "ar": "جميع السنوات" },
+    "opt_all_months":  { "en": "All Months",                   "ar": "جميع الشهور" },
+    "btn_export_excel":{ "en": "📥 Export Excel",              "ar": "📥 تصدير Excel" },
+    "btn_print":       { "en": "🖨 Print Report",              "ar": "🖨 طباعة التقرير" }
+  },
+
+  "page_installments": {
+    "title":           { "en": "💳 Payment Plans / الأقساط", "ar": "💳 خطط الدفع / الأقساط" },
+    "ph_search":       { "en": "🔍 Search patient…",          "ar": "🔍 ابحث عن مريض…" },
+    "btn_new":         { "en": "+ New Plan",                  "ar": "+ خطة جديدة" }
+  },
+
+  "modal_new_patient": {
+    "title":           { "en": "🦷 Register New Patient",     "ar": "🦷 تسجيل مريض جديد" },
+    "tab_info":        { "en": "👤 Patient Info",             "ar": "👤 معلومات المريض" },
+    "tab_xray":        { "en": "🩻 X-Ray Upload",             "ar": "🩻 تحميل أشعة" },
+    "label_name":      { "en": "Full Name *",                 "ar": "الاسم الكامل *" },
+    "ph_name":         { "en": "Patient full name",           "ar": "الاسم الكامل للمريض" },
+    "label_phone":     { "en": "Phone *",                     "ar": "الهاتف *" },
+    "ph_phone":        { "en": "Phone number",                "ar": "رقم الهاتف" },
+    "label_dob":       { "en": "Date of Birth",               "ar": "تاريخ الميلاد" },
+    "label_gender":    { "en": "Gender",                      "ar": "الجنس" },
+    "opt_select":      { "en": "Select",                      "ar": "اختر" },
+    "opt_male":        { "en": "Male",                        "ar": "ذكر" },
+    "opt_female":      { "en": "Female",                      "ar": "أنثى" },
+    "opt_other":       { "en": "Other",                       "ar": "أخرى" },
+    "label_email":     { "en": "Email",                       "ar": "البريد الإلكتروني" },
+    "ph_email":        { "en": "Email address",               "ar": "عنوان البريد" },
+    "label_occupation":{ "en": "Occupation",                  "ar": "المهنة" },
+    "ph_occupation":   { "en": "Job title",                   "ar": "المسمى الوظيفي" },
+    "label_blood":     { "en": "Blood Type",                  "ar": "فصيلة الدم" },
+    "opt_unknown":     { "en": "Unknown",                     "ar": "غير معروف" },
+    "label_insurance": { "en": "Insurance",                   "ar": "التأمين" },
+    "ph_insurance":    { "en": "Insurance provider",          "ar": "مزود التأمين" },
+    "label_referral":  { "en": "Referral Source",             "ar": "مصدر الإحالة" },
+    "opt_google":      { "en": "Google",                      "ar": "جوجل" },
+    "opt_social":      { "en": "Social Media",                "ar": "وسائل التواصل" },
+    "opt_friend":      { "en": "Friend/Family",               "ar": "صديق/عائلة" },
+    "opt_doctor_ref":  { "en": "Doctor Referral",             "ar": "إحالة طبيب" },
+    "opt_walkin":      { "en": "Walk-in",                     "ar": "بدون موعد" },
+    "label_payment":   { "en": "Payment Method",              "ar": "طريقة الدفع" },
+    "opt_cash":        { "en": "Cash",                        "ar": "نقدي" },
+    "opt_card":        { "en": "Card",                        "ar": "بطاقة" },
+    "opt_insurance":   { "en": "Insurance",                   "ar": "تأمين" },
+    "opt_installment": { "en": "Installment",                 "ar": "أقساط" },
+    "label_conditions":{ "en": "Medical Conditions",          "ar": "الحالات الطبية" },
+    "ph_conditions":   { "en": "e.g. Diabetes, Hypertension", "ar": "مثال: السكري، ضغط الدم" },
+    "label_allergies": { "en": "Allergies",                   "ar": "الحساسية" },
+    "ph_allergies":    { "en": "e.g. Penicillin, Latex",      "ar": "مثال: بنسلين، لاتكس" },
+    "label_concerns":  { "en": "Dental Concerns",             "ar": "المخاوف السنية" },
+    "ph_concerns":     { "en": "Main dental concerns",        "ar": "المخاوف الرئيسية" },
+    "label_address":   { "en": "Address",                     "ar": "العنوان" },
+    "ph_address":      { "en": "Home address",                "ar": "عنوان السكن" },
+    "xray_prompt":     { "en": "Click or drag & drop X-ray image here", "ar": "انقر أو اسحب وأفلت صورة الأشعة هنا" },
+    "xray_support":    { "en": "Supports JPG, PNG, WEBP",     "ar": "يدعم JPG, PNG, WEBP" },
+    "xray_remove":     { "en": "✕ Remove",                    "ar": "✕ إزالة" },
+    "label_xray_date": { "en": "X-Ray Date",                  "ar": "تاريخ الأشعة" },
+    "label_xray_notes":{ "en": "X-Ray Notes",                 "ar": "ملاحظات الأشعة" },
+    "ph_xray_notes":   { "en": "e.g. Panoramic, Bitewing...", "ar": "مثال: بانوراما، عضة..." },
+    "btn_cancel":      { "en": "Cancel",                      "ar": "إلغاء" },
+    "btn_save":        { "en": "✓ Register Patient",          "ar": "✓ تسجيل المريض" }
+  },
+
+  "modal_new_appointment": {
+    "title":           { "en": "📅 Schedule Appointment",     "ar": "📅 جدولة موعد" },
+    "label_patient":   { "en": "Patient *",                   "ar": "المريض *" },
+    "ph_patient":      { "en": "Select patient…",             "ar": "اختر مريضاً…" },
+    "label_doctor":    { "en": "Doctor *",                    "ar": "الطبيب *" },
+    "ph_doctor":       { "en": "Select doctor…",              "ar": "اختر طبيباً…" },
+    "label_date":      { "en": "Date *",                      "ar": "التاريخ *" },
+    "label_time":      { "en": "Time *",                      "ar": "الوقت *" },
+    "label_duration":  { "en": "Duration",                    "ar": "المدة" },
+    "opt_15min":       { "en": "15 min",                      "ar": "١٥ دقيقة" },
+    "opt_30min":       { "en": "30 min",                      "ar": "٣٠ دقيقة" },
+    "opt_45min":       { "en": "45 min",                      "ar": "٤٥ دقيقة" },
+    "opt_1hr":         { "en": "1 hour",                      "ar": "ساعة واحدة" },
+    "opt_1_5hr":       { "en": "1.5 hours",                   "ar": "١.٥ ساعة" },
+    "opt_2hr":         { "en": "2 hours",                     "ar": "ساعتان" },
+    "label_priority":  { "en": "Priority",                    "ar": "الأولوية" },
+    "label_type":      { "en": "Treatment Type",              "ar": "نوع العلاج" },
+    "ph_type":         { "en": "Select type…",                "ar": "اختر النوع…" },
+    "opt_checkup":     { "en": "General Checkup",             "ar": "فحص عام" },
+    "opt_cleaning":    { "en": "Cleaning/Scaling",            "ar": "تنظيف/تقليح" },
+    "opt_filling":     { "en": "Filling",                     "ar": "حشو" },
+    "opt_root_canal":  { "en": "Root Canal",                  "ar": "علاج عصب" },
+    "opt_extraction":  { "en": "Extraction",                  "ar": "خلع" },
+    "opt_crown":       { "en": "Crown/Bridge",                "ar": "تاج/جسر" },
+    "opt_implant":     { "en": "Implant",                     "ar": "زراعة" },
+    "opt_orthodontics":{ "en": "Orthodontics",                "ar": "تقويم" },
+    "opt_cosmetic":    { "en": "Cosmetic",                    "ar": "تجميل" },
+    "opt_emergency":   { "en": "Emergency",                   "ar": "طارئ" },
+    "label_complaint": { "en": "Chief Complaint",             "ar": "الشكوى الرئيسية" },
+    "ph_complaint":    { "en": "Main reason for visit",       "ar": "السبب الرئيسي للزيارة" },
+    "label_notes":     { "en": "Notes",                       "ar": "ملاحظات" },
+    "ph_notes":        { "en": "Additional notes",            "ar": "ملاحظات إضافية" },
+    "label_payment":   { "en": "Payment Method",              "ar": "طريقة الدفع" },
+    "ph_payment":      { "en": "Select…",                     "ar": "اختر…" },
+    "label_discount":  { "en": "🏷 Discount Code",             "ar": "🏷 كود الخصم" },
+    "ph_discount":     { "en": "e.g. 10 = 10% off",           "ar": "مثال: 10 = خصم 10٪" },
+    "btn_cancel":      { "en": "Cancel",                      "ar": "إلغاء" },
+    "btn_save":        { "en": "✓ Schedule",                  "ar": "✓ جدولة" }
+  },
+
+  "modal_add_doctor": {
+    "title":           { "en": "⚕️ Add Doctor",              "ar": "⚕️ إضافة طبيب" },
+    "label_name":      { "en": "Full Name *",                "ar": "الاسم الكامل *" },
+    "ph_name":         { "en": "Dr. Full Name",              "ar": "الاسم الكامل للطبيب" },
+    "label_specialty": { "en": "Specialty *",                "ar": "التخصص *" },
+    "ph_specialty":    { "en": "Select…",                    "ar": "اختر…" },
+    "label_phone":     { "en": "Phone",                      "ar": "الهاتف" },
+    "ph_phone":        { "en": "Phone number",               "ar": "رقم الهاتف" },
+    "label_email":     { "en": "Email",                      "ar": "البريد" },
+    "ph_email":        { "en": "Email",                      "ar": "البريد" },
+    "label_license":   { "en": "License #",                  "ar": "رقم الترخيص" },
+    "ph_license":      { "en": "License number",             "ar": "رقم الترخيص" },
+    "label_room":      { "en": "Room",                       "ar": "الغرفة" },
+    "ph_room":         { "en": "e.g. Room 3",                "ar": "مثال: غرفة ٣" },
+    "label_schedule":  { "en": "Schedule",                   "ar": "الجدول" },
+    "ph_schedule":     { "en": "e.g. Sun-Thu 9AM-5PM",       "ar": "مثال: الأحد-الخميس ٩ص-٥م" },
+    "credentials_title":{ "en": "🔑 Login Credentials (auto-generated)", "ar": "🔑 بيانات تسجيل الدخول (تلقائية)" },
+    "credentials_note":{ "en": "⚠️ Note these credentials — the password will not be shown again.", "ar": "⚠️ احتفظ بهذه البيانات — لن تظهر كلمة المرور مجدداً." },
+    "lbl_username":    { "en": "Username",                   "ar": "اسم المستخدم" },
+    "lbl_password":    { "en": "Password",                   "ar": "كلمة المرور" },
+    "btn_cancel":      { "en": "Cancel",                     "ar": "إلغاء" },
+    "btn_save":        { "en": "✓ Add Doctor",               "ar": "✓ إضافة طبيب" }
+  },
+
+  "modal_add_inventory": {
+    "title":            { "en": "📦 Add Inventory Item",     "ar": "📦 إضافة صنف للمخزون" },
+    "label_item_name":  { "en": "Item Name *",               "ar": "اسم الصنف *" },
+    "ph_item_name":     { "en": "Item name",                 "ar": "اسم الصنف" },
+    "label_category":   { "en": "Category",                  "ar": "الفئة" },
+    "opt_consumable":   { "en": "Consumable",                "ar": "مستهلك" },
+    "opt_equipment":    { "en": "Equipment",                 "ar": "معدات" },
+    "opt_medication":   { "en": "Medication",                "ar": "دواء" },
+    "opt_material":     { "en": "Material",                  "ar": "مواد" },
+    "label_quantity":   { "en": "Quantity *",                "ar": "الكمية *" },
+    "label_min_stock":  { "en": "Min Stock Level",           "ar": "الحد الأدنى" },
+    "label_unit_price": { "en": "Unit Price (E£)",           "ar": "سعر الوحدة" },
+    "label_supplier":   { "en": "Supplier",                  "ar": "المورد" },
+    "ph_supplier":      { "en": "Supplier name",             "ar": "اسم المورد" },
+    "btn_cancel":       { "en": "Cancel",                    "ar": "إلغاء" },
+    "btn_add":          { "en": "✓ Add Item",                "ar": "✓ إضافة صنف" }
+  },
+
+  "modal_new_transaction": {
+    "title":            { "en": "💰 Add Transaction",        "ar": "💰 إضافة معاملة" },
+    "label_desc":       { "en": "Description *",             "ar": "الوصف *" },
+    "ph_desc":          { "en": "Transaction description",   "ar": "وصف المعاملة" },
+    "label_type":       { "en": "Type *",                    "ar": "النوع *" },
+    "opt_income":       { "en": "Income",                    "ar": "دخل" },
+    "opt_expense":      { "en": "Expense",                   "ar": "مصروف" },
+    "label_category":   { "en": "Category",                  "ar": "الفئة" },
+    "opt_treatment":    { "en": "Treatment",                 "ar": "علاج" },
+    "opt_consultation": { "en": "Consultation",              "ar": "استشارة" },
+    "opt_supplies":     { "en": "Supplies",                  "ar": "مستلزمات" },
+    "opt_equipment":    { "en": "Equipment",                 "ar": "معدات" },
+    "opt_salary":       { "en": "Salary",                    "ar": "راتب" },
+    "opt_rent":         { "en": "Rent",                      "ar": "إيجار" },
+    "opt_utilities":    { "en": "Utilities",                 "ar": "خدمات" },
+    "opt_other":        { "en": "Other",                     "ar": "أخرى" },
+    "label_amount":     { "en": "Amount (E£) *",             "ar": "المبلغ *" },
+    "label_date":       { "en": "Date *",                    "ar": "التاريخ *" },
+    "btn_cancel":       { "en": "Cancel",                    "ar": "إلغاء" },
+    "btn_add":          { "en": "✓ Add Transaction",         "ar": "✓ إضافة معاملة" }
+  },
+
+  "modal_patient_detail": {
+    "title":            { "en": "Patient Details",           "ar": "تفاصيل المريض" },
+    "tab_overview":     { "en": "Overview",                  "ar": "نظرة عامة" },
+    "tab_treatments":   { "en": "Treatments",                "ar": "العلاجات" },
+    "tab_appointments": { "en": "Appointments",              "ar": "المواعيد" },
+    "tab_billing":      { "en": "Billing",                   "ar": "الفواتير" },
+    "tab_xray":         { "en": "🩻 X-Ray",                  "ar": "🩻 الأشعة" },
+    "tab_chart":        { "en": "🦷 Chart",                  "ar": "🦷 الرسم البياني" }
+  },
+
+  "modal_confirm_treatment": {
+    "title":            { "en": "✅ Confirm Treatment",       "ar": "✅ تأكيد العلاج" },
+    "label_cost":       { "en": "Treatment Cost (E£) *",     "ar": "تكلفة العلاج *" },
+    "label_discount":   { "en": "Discount Code",             "ar": "كود الخصم" },
+    "label_discount_opt":{ "en": "(optional)",               "ar": "(اختياري)" },
+    "ph_discount":      { "en": "Enter discount code…",      "ar": "أدخل الكود…" },
+    "btn_apply":        { "en": "Apply",                     "ar": "تطبيق" },
+    "label_final":      { "en": "Final Amount:",             "ar": "المبلغ النهائي:" },
+    "btn_confirm":      { "en": "✓ Confirm & Add to Finance","ar": "✓ تأكيد وإضافة للمالية" },
+    "btn_cancel":       { "en": "Cancel",                    "ar": "إلغاء" }
+  },
+
+  "modal_add_to_queue": {
+    "title":            { "en": "⏳ Add Patient to Waiting Room", "ar": "⏳ إضافة مريض لغرفة الانتظار" },
+    "label_patient":    { "en": "Patient *",                      "ar": "المريض *" },
+    "ph_patient":       { "en": "Select patient…",                "ar": "اختر مريضاً…" },
+    "label_notes":      { "en": "Notes (optional)",               "ar": "ملاحظات (اختياري)" },
+    "ph_notes":         { "en": "e.g. Urgent, Arrived early...",  "ar": "مثال: عاجل، وصل مبكراً..." },
+    "btn_cancel":       { "en": "Cancel",                         "ar": "إلغاء" },
+    "btn_add":          { "en": "⏳ Add to Queue",                 "ar": "⏳ إضافة للدور" }
+  },
+
+  "modal_new_user": {
+    "title":            { "en": "👤 User Account",           "ar": "👤 حساب المستخدم" },
+    "label_user":       { "en": "Username *",                "ar": "اسم المستخدم *" },
+    "ph_user":          { "en": "Username",                  "ar": "اسم المستخدم" },
+    "label_pass":       { "en": "Password *",                "ar": "كلمة المرور *" },
+    "ph_pass":          { "en": "Password",                  "ar": "كلمة المرور" },
+    "label_role":       { "en": "Role",                      "ar": "الدور" },
+    "opt_receptionist": { "en": "Receptionist",              "ar": "موظف استقبال" },
+    "opt_doctor":       { "en": "Doctor",                    "ar": "طبيب" },
+    "opt_admin":        { "en": "Admin",                     "ar": "مسؤول" },
+    "btn_cancel":       { "en": "Cancel",                    "ar": "إلغاء" },
+    "btn_create":       { "en": "✓ Create User",             "ar": "✓ إنشاء مستخدم" }
+  },
+
+  "modal_new_discount_code": {
+    "title":            { "en": "🏷 Discount Code",          "ar": "🏷 كود الخصم" },
+    "label_code":       { "en": "Code *",                    "ar": "الكود *" },
+    "ph_code":          { "en": "e.g. PROMO10, SUMMER20",    "ar": "مثال: PROMO10، SUMMER20" },
+    "label_type":       { "en": "Discount Type",             "ar": "نوع الخصم" },
+    "opt_percent":      { "en": "Percent (%)",               "ar": "نسبة مئوية (%)" },
+    "opt_fixed":        { "en": "Fixed Amount (E£)",         "ar": "مبلغ ثابت (ج.م)" },
+    "label_value":      { "en": "Value *",                   "ar": "القيمة *" },
+    "ph_value":         { "en": "e.g. 10 for 10% or 50 for E£50", "ar": "مثال: 10 لـ 10% أو 50 لـ 50 ج.م" },
+    "label_desc":       { "en": "Description",               "ar": "الوصف" },
+    "ph_desc":          { "en": "Optional description",      "ar": "وصف اختياري" },
+    "label_status":     { "en": "Status",                    "ar": "الحالة" },
+    "opt_active":       { "en": "Active",                    "ar": "نشط" },
+    "opt_inactive":     { "en": "Inactive",                  "ar": "غير نشط" },
+    "btn_cancel":       { "en": "Cancel",                    "ar": "إلغاء" },
+    "btn_save":         { "en": "✓ Save Code",               "ar": "✓ حفظ الكود" }
+  },
+
+  "modal_appt_detail": {
+    "title":            { "en": "📅 Appointment Details",    "ar": "📅 تفاصيل الموعد" },
+    "btn_close":        { "en": "Close",                     "ar": "إغلاق" }
+  },
+
+  "modal_tx_detail": {
+    "title":            { "en": "💰 Transaction Details",    "ar": "💰 تفاصيل المعاملة" },
+    "btn_close":        { "en": "Close",                     "ar": "إغلاق" }
+  },
+
+  "modal_inv_detail": {
+    "title":            { "en": "📦 Item Details",           "ar": "📦 تفاصيل الصنف" },
+    "btn_close":        { "en": "Close",                     "ar": "إغلاق" }
+  },
+
+  "modal_doc_detail": {
+    "title":            { "en": "👨‍⚕️ Doctor Details",       "ar": "👨‍⚕️ تفاصيل الطبيب" },
+    "btn_close":        { "en": "Close",                     "ar": "إغلاق" }
+  },
+
+  "modal_user_detail": {
+    "title":            { "en": "👤 User Details",           "ar": "👤 تفاصيل المستخدم" },
+    "btn_close":        { "en": "Close",                     "ar": "إغلاق" }
+  },
+
+  "modal_discount_detail": {
+    "title":            { "en": "🏷 Discount Code Details",  "ar": "🏷 تفاصيل كود الخصم" },
+    "btn_close":        { "en": "Close",                     "ar": "إغلاق" }
+  },
+
+  "table_headers": {
+    "time":         { "en": "Time",             "ar": "الوقت" },
+    "patient":      { "en": "Patient",          "ar": "المريض" },
+    "doctor":       { "en": "Doctor",           "ar": "الطبيب" },
+    "status":       { "en": "Status",           "ar": "الحالة" },
+    "actions":      { "en": "Actions",          "ar": "الإجراءات" },
+    "date":         { "en": "Date",             "ar": "التاريخ" },
+    "treatment":    { "en": "Treatment",        "ar": "العلاج" },
+    "priority":     { "en": "Priority",         "ar": "الأولوية" },
+    "name":         { "en": "Name",             "ar": "الاسم" },
+    "phone":        { "en": "Phone",            "ar": "الهاتف" },
+    "age":          { "en": "Age",              "ar": "العمر" },
+    "gender":       { "en": "Gender",           "ar": "الجنس" },
+    "insurance":    { "en": "Insurance",        "ar": "التأمين" },
+    "registered":   { "en": "Registered",       "ar": "مسجل" },
+    "description":  { "en": "Description",      "ar": "الوصف" },
+    "category":     { "en": "Category",         "ar": "الفئة" },
+    "type":         { "en": "Type",             "ar": "النوع" },
+    "amount":       { "en": "Amount",           "ar": "المبلغ" },
+    "item":         { "en": "Item",             "ar": "الصنف" },
+    "qty":          { "en": "Qty",              "ar": "الكمية" },
+    "min_stock":    { "en": "Min Stock",        "ar": "الحد الأدنى" },
+    "unit_price":   { "en": "Unit Price",       "ar": "سعر الوحدة" },
+    "supplier":     { "en": "Supplier",         "ar": "المورد" },
+    "from":         { "en": "From",             "ar": "من" },
+    "request":      { "en": "Request",          "ar": "الطلب" },
+    "user":         { "en": "User",             "ar": "المستخدم" },
+    "role":         { "en": "Role",             "ar": "الدور" },
+    "password":     { "en": "Password",         "ar": "كلمة المرور" },
+    "tooth":        { "en": "Tooth",            "ar": "السن" },
+    "diagnosis":    { "en": "Diagnosis",        "ar": "التشخيص" },
+    "cost":         { "en": "Cost",             "ar": "التكلفة" },
+    "number":       { "en": "#",               "ar": "رقم" },
+    "queue":        { "en": "Queue",            "ar": "الدور" },
+    "arrived":      { "en": "Arrived",          "ar": "وصل" },
+    "waiting":      { "en": "Waiting",          "ar": "ينتظر" },
+    "paid":         { "en": "Paid",             "ar": "مدفوع" },
+    "remaining":    { "en": "Remaining",        "ar": "متبقي" },
+    "progress":     { "en": "Progress",         "ar": "التقدم" },
+    "total_amount": { "en": "Total Amount",     "ar": "المبلغ الإجمالي" },
+    "installments": { "en": "Installments",     "ar": "الأقساط" },
+    "revenue":      { "en": "Revenue Generated","ar": "الإيرادات المحققة" },
+    "treatments_count":{ "en": "Treatments",   "ar": "العلاجات" },
+    "commission_pct":{ "en": "Commission %",   "ar": "نسبة العمولة %" },
+    "comm_earned":  { "en": "Commission Earned","ar": "العمولة المكتسبة" },
+    "code":         { "en": "Code",             "ar": "الكود" },
+    "value":        { "en": "Value",            "ar": "القيمة" },
+    "created":      { "en": "Created",          "ar": "تاريخ الإنشاء" },
+    "backup_name":  { "en": "Backup Name",      "ar": "اسم النسخة" },
+    "label":        { "en": "Label",            "ar": "تسمية" },
+    "db_size":      { "en": "DB Size",          "ar": "حجم قاعدة البيانات" },
+    "total_size":   { "en": "Total Size",       "ar": "الحجم الإجمالي" },
+    "files":        { "en": "Files",            "ar": "الملفات" },
+    "discount":     { "en": "Discount",         "ar": "الخصم" }
+  },
+
+  "status_values": {
+    "scheduled":    { "en": "Scheduled",        "ar": "مجدول" },
+    "confirmed":    { "en": "Confirmed",        "ar": "مؤكد" },
+    "completed":    { "en": "Completed",        "ar": "مكتمل" },
+    "cancelled":    { "en": "Cancelled",        "ar": "ملغي" },
+    "no_show":      { "en": "No Show",          "ar": "غياب" },
+    "income":       { "en": "Income",           "ar": "دخل" },
+    "expense":      { "en": "Expense",          "ar": "مصروف" },
+    "normal":       { "en": "Normal",           "ar": "عادي" },
+    "urgent":       { "en": "Urgent",           "ar": "عاجل" },
+    "emergency":    { "en": "Emergency",        "ar": "طارئ" },
+    "active":       { "en": "Active",           "ar": "نشط" },
+    "inactive":     { "en": "Inactive",         "ar": "غير نشط" },
+    "present":      { "en": "Present",          "ar": "حاضر" },
+    "absent":       { "en": "Absent",           "ar": "غائب" }
+  },
+
+  "enums": {
+    "specialties": {
+      "general":     { "en": "General Dentistry",     "ar": "طب أسنان عام" },
+      "ortho":       { "en": "Orthodontics",          "ar": "تقويم الأسنان" },
+      "endo":        { "en": "Endodontics",           "ar": "علاج الجذور" },
+      "perio":       { "en": "Periodontics",          "ar": "أمراض اللثة" },
+      "surgery":     { "en": "Oral Surgery",          "ar": "جراحة الفم" },
+      "prostho":     { "en": "Prosthodontics",        "ar": "الاستعاضة الصناعية" },
+      "pediatric":   { "en": "Pediatric Dentistry",  "ar": "طب أسنان الأطفال" }
+    },
+    "roles": {
+      "admin":       { "en": "Administrator",         "ar": "مدير النظام" },
+      "doctor":      { "en": "Doctor",                "ar": "طبيب" },
+      "receptionist":{ "en": "Receptionist",          "ar": "موظف استقبال" },
+      "hygienist":   { "en": "Hygienist",             "ar": "أخصائي صحة" },
+      "assistant":   { "en": "Assistant",             "ar": "مساعد" },
+      "accountant":  { "en": "Accountant",            "ar": "محاسب" },
+      "manager":     { "en": "Manager",               "ar": "مدير" }
+    },
+    "months": {
+      "01": { "en": "January",   "ar": "يناير" },
+      "02": { "en": "February",  "ar": "فبراير" },
+      "03": { "en": "March",     "ar": "مارس" },
+      "04": { "en": "April",     "ar": "أبريل" },
+      "05": { "en": "May",       "ar": "مايو" },
+      "06": { "en": "June",      "ar": "يونيو" },
+      "07": { "en": "July",      "ar": "يوليو" },
+      "08": { "en": "August",    "ar": "أغسطس" },
+      "09": { "en": "September", "ar": "سبتمبر" },
+      "10": { "en": "October",   "ar": "أكتوبر" },
+      "11": { "en": "November",  "ar": "نوفمبر" },
+      "12": { "en": "December",  "ar": "ديسمبر" }
+    }
+  },
+
+  "toast": {
+    "welcome":       { "en": "Welcome back",          "ar": "مرحباً بعودتك" },
+    "logged_out":    { "en": "Logged out",            "ar": "تم تسجيل الخروج" },
+    "saved":         { "en": "Saved successfully",    "ar": "تم الحفظ بنجاح" },
+    "error":         { "en": "An error occurred",     "ar": "حدث خطأ ما" },
+    "deleted":       { "en": "Deleted successfully",  "ar": "تم الحذف بنجاح" },
+    "lang_switched_ar": { "en": "Switched to Arabic 🌐",  "ar": "تم التبديل إلى العربية 🌐" },
+    "lang_switched_en": { "en": "Switched to English 🌐", "ar": "تم التبديل إلى الإنجليزية 🌐" }
+  },
+
+  "common": {
+    "admin_only":    { "en": "Admin Only",            "ar": "للمسؤول فقط" },
+    "close":         { "en": "Close",                 "ar": "إغلاق" },
+    "cancel":        { "en": "Cancel",                "ar": "إلغاء" },
+    "save":          { "en": "Save",                  "ar": "حفظ" },
+    "delete":        { "en": "Delete",                "ar": "حذف" },
+    "edit":          { "en": "Edit",                  "ar": "تعديل" },
+    "view":          { "en": "View",                  "ar": "عرض" },
+    "print":         { "en": "Print",                 "ar": "طباعة" },
+    "export":        { "en": "Export",                "ar": "تصدير" },
+    "import":        { "en": "Import",                "ar": "استيراد" },
+    "search":        { "en": "Search",                "ar": "بحث" },
+    "refresh":       { "en": "Refresh",               "ar": "تحديث" },
+    "loading":       { "en": "Loading…",              "ar": "جارٍ التحميل…" },
+    "no_data":       { "en": "No data available",     "ar": "لا توجد بيانات" },
+    "confirm":       { "en": "Confirm",               "ar": "تأكيد" },
+    "logout":        { "en": "Logout",                "ar": "تسجيل الخروج" }
+  }
+}

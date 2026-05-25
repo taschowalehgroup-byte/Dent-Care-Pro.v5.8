@@ -1,0 +1,1131 @@
+/* ═══════════════════════════════════════════════════════
+   DentCare Pro — Page-Specific Styles
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Stats Grid (Dashboard) ────────────────────────── */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-bottom:1.5rem }
+.stat-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; position:relative; overflow:hidden; cursor:pointer; transition:all var(--transition); animation:statPop .5s cubic-bezier(.4,0,.2,1) both; animation-delay:calc(var(--i,0) * .08s) }
+.stat-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--c,var(--accent)) 0%, transparent 70%); opacity:.05; transition:opacity var(--transition) }
+.stat-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,.4) }
+.stat-card:hover::before { opacity:.1 }
+.stat-icon { font-size:1.8rem; margin-bottom:.75rem; display:block }
+.stat-label { font-size:.75rem; color:var(--text2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.25rem }
+.stat-value { font-family:'Syne',sans-serif; font-weight:800; font-size:1.8rem; color:var(--text); transition:all .5s ease }
+.stat-sub { font-size:.75rem; color:var(--text3); margin-top:.25rem }
+
+/* ── Dashboard Grid ────────────────────────────────── */
+.dash-grid { display:grid; grid-template-columns:1fr 340px; grid-template-rows:auto auto; gap:1rem }
+.dash-appts { grid-column:1; grid-row:1 }
+.dash-quick { grid-column:2; grid-row:1/3 }
+.dash-finance { grid-column:1; grid-row:2 }
+.dash-doctors { grid-column:1; grid-row:3; display:none }
+
+/* ── Appointment List ──────────────────────────────── */
+.appt-list { display:flex; flex-direction:column; gap:.5rem; max-height:300px; overflow-y:auto }
+.appt-item { display:flex; align-items:center; gap:1rem; padding:.75rem 1rem; background:var(--bg3); border-radius:var(--radius-sm); border:1px solid var(--border); transition:all var(--transition); cursor:pointer; animation:slideIn .3s ease both; animation-delay:calc(var(--i) * .05s) }
+.appt-item:hover { border-color:var(--accent); background:rgba(0,212,255,.04) }
+.appt-time { font-family:'Syne',sans-serif; font-weight:700; font-size:.85rem; color:var(--accent); min-width:50px }
+.appt-info { flex:1 }
+.appt-patient { font-weight:500; font-size:.875rem }
+.appt-meta { font-size:.75rem; color:var(--text2) }
+
+/* ── Quick Actions ─────────────────────────────────── */
+.quick-actions { display:grid; grid-template-columns:1fr 1fr; gap:.6rem }
+.qa-btn { display:flex; flex-direction:column; align-items:center; gap:.4rem; padding:.9rem; background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; color:var(--text2); font-size:.78rem; font-weight:500; transition:all var(--transition) }
+.qa-btn span { font-size:1.4rem }
+.qa-btn:hover { border-color:var(--accent); color:var(--accent); background:rgba(0,212,255,.06); transform:scale(1.03) }
+
+/* ── Stock Alerts ──────────────────────────────────── */
+.stock-alerts { display:flex; flex-direction:column; gap:.4rem; max-height:160px; overflow-y:auto }
+.stock-alert-item { display:flex; align-items:center; justify-content:space-between; padding:.5rem .75rem; background:rgba(255,68,102,.06); border:1px solid rgba(255,68,102,.2); border-radius:var(--radius-sm); font-size:.8rem }
+.stock-alert-item span:last-child { color:var(--red); font-weight:600 }
+
+/* ── Finance Bars ──────────────────────────────────── */
+.finance-bars { display:flex; align-items:flex-end; gap:.6rem; height:120px; padding:.5rem 0 }
+.finance-bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:.3rem; height:100% }
+.finance-bar { width:100%; border-radius:4px 4px 0 0; min-height:4px; transition:height .8s cubic-bezier(.4,0,.2,1); position:relative; overflow:hidden }
+.finance-bar.income { background:linear-gradient(to top,var(--green),rgba(6,214,160,.5)) }
+.finance-bar.expense { background:linear-gradient(to top,var(--red),rgba(255,68,102,.5)) }
+.finance-bar-label { font-size:.65rem; color:var(--text3) }
+.finance-bar-val { font-size:.7rem; color:var(--text2) }
+
+/* ── Doctor Status ─────────────────────────────────── */
+.doctor-status-list { display:flex; flex-direction:column; gap:.5rem }
+.doc-status-item { display:flex; align-items:center; gap:.75rem; padding:.6rem .75rem; background:var(--bg3); border-radius:var(--radius-sm); border:1px solid var(--border) }
+.doc-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0 }
+.doc-dot.present { background:var(--green); box-shadow:0 0 8px var(--green) }
+.doc-dot.absent { background:var(--red) }
+.doc-status-name { font-size:.85rem; flex:1 }
+.doc-status-spec { font-size:.75rem; color:var(--text2) }
+
+/* ── Doctors Grid ──────────────────────────────────── */
+.doctors-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem }
+.doctor-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; transition:all var(--transition); cursor:pointer; animation:fadeIn .4s ease both; animation-delay:calc(var(--i) * .07s); position:relative; overflow:hidden }
+.doctor-card::after { content:''; position:absolute; top:0; right:0; width:60px; height:60px; background:radial-gradient(circle,var(--accent) 0%,transparent 70%); opacity:.06 }
+.doctor-card:hover { transform:translateY(-4px); border-color:rgba(0,212,255,.3); box-shadow:var(--shadow) }
+.dr-avatar { width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:#000; font-weight:700; margin-bottom:1rem }
+.dr-name { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:.25rem }
+.dr-spec { font-size:.8rem; color:var(--accent); margin-bottom:.75rem }
+.dr-info { font-size:.8rem; color:var(--text2); display:flex; flex-direction:column; gap:.2rem }
+.dr-status { margin-top:1rem }
+
+/* ── Finance Summary ───────────────────────────────── */
+.finance-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem }
+.fin-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem; text-align:center; animation:fadeIn .4s ease both }
+.fin-label { font-size:.75rem; color:var(--text2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.4rem }
+.fin-value { font-family:'Syne',sans-serif; font-weight:800; font-size:1.6rem }
+.fin-value.income { color:var(--green) }
+.fin-value.expense { color:var(--red) }
+.fin-value.net { color:var(--accent) }
+
+/* ── Detail Tabs / Patient Detail ──────────────────── */
+.detail-tabs { display:flex; gap:.3rem; margin-bottom:1.5rem }
+.dtab { padding:.5rem 1rem; border-radius:var(--radius-sm); font-size:.85rem; font-weight:500; cursor:pointer; background:transparent; border:1px solid var(--border); color:var(--text2); transition:all var(--transition) }
+.dtab.active { background:rgba(0,212,255,.1); border-color:var(--accent); color:var(--accent) }
+.detail-panel { display:none }
+.detail-panel.active { display:block; animation:fadeIn .25s ease }
+.detail-info-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem }
+.detail-info-item label { font-size:.72rem; color:var(--text2); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.25rem; display:block }
+.detail-info-item span { font-size:.9rem; font-weight:500 }
+
+/* ═══════════════════════════════════════════════════════
+   NEW DASHBOARD
+   ═══════════════════════════════════════════════════════ */
+
+/* ── KPI Cards ─────────────────────────────────────── */
+.dash-kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.25rem }
+@media(max-width:900px){ .dash-kpi-grid{ grid-template-columns:repeat(2,1fr) } }
+
+.dash-kpi-card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1.4rem 1.5rem; position:relative; overflow:hidden; cursor:default;
+  transition:transform var(--transition), box-shadow var(--transition);
+  animation:statPop .5s cubic-bezier(.4,0,.2,1) both;
+  animation-delay:calc(var(--i,0) * .08s);
+}
+.dash-kpi-card::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,var(--c,var(--accent)) 0%,transparent 70%);
+  opacity:.05; transition:opacity var(--transition);
+}
+.dash-kpi-card:hover { transform:translateY(-3px); box-shadow:0 12px 36px rgba(0,0,0,.35) }
+.dash-kpi-card:hover::before { opacity:.1 }
+.dkpi-icon { font-size:2rem; margin-bottom:.5rem }
+.dkpi-value { font-family:'Syne',sans-serif; font-weight:800; font-size:2.2rem; line-height:1 }
+.dkpi-label { font-size:.72rem; color:var(--text2); text-transform:uppercase; letter-spacing:.08em; margin:.35rem 0 .2rem }
+.dkpi-sub { font-size:.78rem; font-weight:500 }
+
+/* ── Schedule + Quick Actions row ──────────────────── */
+.dash-main-grid { display:grid; grid-template-columns:1fr 280px; gap:1rem; margin-bottom:1.25rem }
+@media(max-width:900px){ .dash-main-grid{ grid-template-columns:1fr } }
+
+.dash-schedule-card .card-head { display:flex; align-items:center; justify-content:space-between }
+.btn-all {
+  padding:.35rem .85rem; border-radius:var(--radius-sm); border:1px solid var(--border);
+  background:var(--bg3); color:var(--text2); font-size:.78rem; font-weight:600;
+  cursor:pointer; transition:all var(--transition);
+}
+.btn-all:hover { border-color:var(--accent); color:var(--accent) }
+
+.empty-td { text-align:center; padding:2rem; color:var(--text3); font-size:.875rem }
+.btn-xs {
+  padding:.25rem .65rem; border-radius:6px; border:1px solid var(--border);
+  background:transparent; color:var(--text2); font-size:.75rem; cursor:pointer;
+  transition:all var(--transition);
+}
+.btn-xs:hover { border-color:var(--accent); color:var(--accent) }
+
+/* ── Quick Actions (new style) ─────────────────────── */
+.dash-qa-list { display:flex; flex-direction:column; gap:.55rem; margin-top:.25rem }
+.dash-qa-btn {
+  display:flex; align-items:center; gap:.75rem; padding:.8rem 1rem;
+  background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-sm);
+  cursor:pointer; color:var(--text2); font-size:.82rem; font-weight:500;
+  transition:all var(--transition); text-align:left; width:100%;
+}
+.dash-qa-btn span { font-size:1.15rem }
+.dash-qa-btn:hover { border-color:var(--accent); color:var(--accent); background:rgba(0,212,255,.05) }
+
+/* ── Revenue trend card ─────────────────────────────── */
+.dash-revenue-card {}
+.dash-chart-wrap { padding:.5rem 0 }
+
+/* ═══════════════════════════════════════════════════════
+   ANALYTICS PAGE
+   ═══════════════════════════════════════════════════════ */
+
+.an-kpi-grid {
+  display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-bottom:1.25rem
+}
+@media(max-width:1100px){ .an-kpi-grid{ grid-template-columns:repeat(3,1fr) } }
+@media(max-width:700px){ .an-kpi-grid{ grid-template-columns:repeat(2,1fr) } }
+
+.an-kpi-card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1.2rem 1.4rem; position:relative; overflow:hidden;
+  animation:statPop .5s ease both; animation-delay:calc(var(--i,0)*.07s);
+  transition:transform var(--transition);
+}
+.an-kpi-card::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,var(--c,var(--accent)) 0%,transparent 70%);
+  opacity:.05;
+}
+.an-kpi-card:hover { transform:translateY(-3px) }
+.ankpi-icon { font-size:1.6rem; margin-bottom:.4rem }
+.ankpi-val  { font-family:'Syne',sans-serif; font-weight:800; font-size:1.6rem; line-height:1 }
+.ankpi-label{ font-size:.72rem; color:var(--text2); text-transform:uppercase; letter-spacing:.07em; margin-top:.35rem }
+
+.an-top-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem }
+@media(max-width:900px){ .an-top-grid{ grid-template-columns:1fr } }
+
+.an-chart-wrap { padding:.25rem 0; position:relative }
+.an-donut-wrap { padding:.25rem 0; display:flex; justify-content:center }
+
+/* ══════════════════════════════════════════════
+   CALENDAR PAGE
+   ══════════════════════════════════════════════ */
+.cal-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:1rem; gap:1rem;
+}
+.cal-title  { font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:700; color:var(--text); margin:0 }
+.cal-sub    { font-size:.78rem; color:var(--text-muted,var(--text2)); margin:.2rem 0 0 }
+.cal-nav    {
+  background:var(--surface2); border:1px solid var(--border); color:var(--text);
+  width:38px; height:38px; border-radius:50%; font-size:1.3rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background var(--transition);
+}
+.cal-nav:hover { background:var(--accent); color:#000 }
+
+.cal-legend {
+  display:flex; gap:1.2rem; flex-wrap:wrap; margin-bottom:1rem;
+  font-size:.78rem; color:var(--text2);
+}
+
+.cal-grid {
+  display:grid; grid-template-columns:repeat(7,1fr);
+  gap:3px; margin-bottom:1rem;
+}
+.cal-head-cell {
+  text-align:center; font-size:.72rem; font-weight:600;
+  color:var(--text2); padding:.4rem 0; text-transform:uppercase; letter-spacing:.06em;
+}
+.cal-cell {
+  background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+  min-height:90px; padding:.5rem; cursor:pointer; transition:border-color var(--transition);
+  position:relative; overflow:hidden;
+}
+.cal-cell:hover { border-color:var(--accent) }
+.cal-empty { background:transparent; border-color:transparent; cursor:default }
+.cal-empty:hover { border-color:transparent }
+.cal-today { border-color:var(--accent) !important; background:rgba(0,212,255,.04) }
+.cal-day-num {
+  font-family:'Syne',sans-serif; font-size:.85rem; font-weight:700;
+  color:var(--text2); margin-bottom:.3rem;
+}
+.today-num {
+  background:var(--accent); color:#000; border-radius:50%;
+  width:22px; height:22px; display:flex; align-items:center; justify-content:center;
+  font-size:.75rem;
+}
+.cal-appt {
+  font-size:.68rem; border-radius:4px; padding:2px 5px;
+  margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  cursor:pointer; display:flex; gap:4px; align-items:center;
+}
+.cal-appt span { font-weight:700; flex-shrink:0 }
+.cal-more {
+  font-size:.65rem; color:var(--accent); cursor:pointer; padding-top:2px;
+  text-align:center;
+}
+
+.cal-day-panel {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1rem; margin-top:1rem;
+}
+.cal-panel-head {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:.75rem; font-size:.95rem; font-weight:600; color:var(--text);
+}
+.cal-panel-head button {
+  background:none; border:none; color:var(--text2); font-size:1.1rem; cursor:pointer;
+}
+@media(max-width:700px){
+  .cal-grid { gap:2px }
+  .cal-cell { min-height:64px; padding:.3rem }
+  .cal-appt { display:none }
+}
+
+/* ══════════════════════════════════════════════
+   SETTINGS PAGE
+   ══════════════════════════════════════════════ */
+.settings-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1rem; margin-bottom:1rem;
+}
+@media(max-width:900px){ .settings-grid{ grid-template-columns:1fr } }
+
+.settings-card .card-head h3 { font-size:1rem }
+.settings-fields { display:flex; flex-direction:column; gap:.75rem; padding-top:.5rem }
+
+.settings-toggle {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.6rem 0; border-bottom:1px solid var(--border);
+  font-size:.9rem; color:var(--text);
+}
+.settings-toggle:last-child { border-bottom:none }
+
+/* Toggle switch */
+.toggle-switch { position:relative; display:inline-block; width:42px; height:24px }
+.toggle-switch input { opacity:0; width:0; height:0 }
+.toggle-slider {
+  position:absolute; cursor:pointer; inset:0;
+  background:var(--border); border-radius:24px; transition:.3s;
+}
+.toggle-slider::before {
+  content:''; position:absolute; height:18px; width:18px; border-radius:50%;
+  left:3px; bottom:3px; background:#fff; transition:.3s;
+}
+.toggle-switch input:checked + .toggle-slider { background:var(--accent) }
+.toggle-switch input:checked + .toggle-slider::before { transform:translateX(18px) }
+
+.settings-actions {
+  display:flex; justify-content:flex-end; gap:.75rem;
+  padding-top:.5rem;
+}
+
+/* ══════════════════════════════════════════════
+   DENTAL CHART
+   ══════════════════════════════════════════════ */
+.dental-chart-section {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: .5rem;
+}
+.dental-chart-head {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: .75rem; font-weight: 600; color: var(--text); flex-wrap: wrap;
+}
+.teeth-selected-display {
+  display: flex; flex-wrap: wrap; gap: 4px; flex: 1;
+}
+.tooth-chip {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); border-radius: 4px; padding: 1px 7px;
+  font-size: .72rem; font-weight: 700;
+}
+.tooth-chip.selected {
+  background: var(--accent); color: #000; border-color: var(--accent);
+}
+.btn-clear-teeth {
+  background: none; border: 1px solid var(--border); color: var(--text2);
+  border-radius: var(--radius-sm); padding: .25rem .65rem;
+  font-size: .78rem; cursor: pointer; white-space: nowrap;
+  transition: all var(--transition);
+}
+.btn-clear-teeth:hover { border-color: var(--red); color: var(--red); }
+
+.dental-chart { user-select: none; }
+.dental-jaw { margin-bottom: .5rem; }
+.jaw-label {
+  font-size: .7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--text2); margin-bottom: .35rem;
+}
+.teeth-row {
+  display: flex; align-items: center; gap: 3px; flex-wrap: wrap;
+}
+.jaw-divider {
+  width: 2px; height: 36px; background: var(--border);
+  border-radius: 2px; margin: 0 4px; flex-shrink: 0;
+}
+.dental-midline {
+  height: 1px; background: var(--border); margin: .4rem 0;
+}
+
+.tooth-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 38px; height: 44px; border-radius: 8px; cursor: pointer;
+  background: var(--card); border: 2px solid var(--border);
+  transition: all .15s; flex-shrink: 0;
+}
+.tooth-btn:hover {
+  border-color: var(--accent); background: rgba(0,212,255,.08);
+  transform: translateY(-2px);
+}
+.tooth-btn.selected {
+  border-color: var(--accent); background: var(--accent);
+}
+.tooth-btn.selected .tooth-icon,
+.tooth-btn.selected .tooth-num { color: #000; }
+.tooth-icon {
+  font-size: .65rem; font-weight: 800; color: var(--text2);
+  line-height: 1;
+}
+.tooth-num {
+  font-size: .6rem; color: var(--text2); margin-top: 2px; font-weight: 600;
+}
+
+.dental-chart-legend {
+  display: flex; gap: 1rem; margin-top: .6rem; flex-wrap: wrap;
+  font-size: .72rem; color: var(--text2);
+}
+.dental-chart-legend span { display: flex; align-items: center; gap: .2rem; }
+
+@media(max-width:600px) {
+  .tooth-btn { width: 30px; height: 36px; }
+  .tooth-icon { font-size: .55rem; }
+  .tooth-num  { font-size: .5rem; }
+}
+
+/* ══════════════════════════════════════════════
+   X-RAY UPLOAD
+   ══════════════════════════════════════════════ */
+.np-tabs {
+  display: flex; gap: .5rem; margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border); padding-bottom: .5rem;
+}
+.np-tab {
+  background: none; border: none; color: var(--text2);
+  padding: .4rem .9rem; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: .88rem; font-weight: 500;
+  transition: all var(--transition);
+}
+.np-tab:hover { background: var(--surface2); color: var(--text); }
+.np-tab.active {
+  background: var(--accent); color: #000; font-weight: 700;
+}
+.np-tab-panel { animation: fadeIn .2s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
+
+.xray-upload-area {
+  border: 2px dashed var(--border); border-radius: var(--radius);
+  min-height: 200px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: pointer; padding: 1.5rem; text-align: center;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative; overflow: hidden;
+}
+.xray-upload-area:hover { border-color: var(--accent); background: rgba(0,212,255,.03); }
+.xray-upload-area.drag-over { border-color: var(--accent); background: rgba(0,212,255,.08); }
+.xray-remove-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(0,0,0,.6); color: #fff;
+  border: none; border-radius: var(--radius-sm);
+  padding: .3rem .6rem; font-size: .78rem; cursor: pointer;
+}
+.xray-remove-btn:hover { background: var(--red); }
+
+/* ══════════════════════════════════════════════
+   SETTINGS — LOGO & DOCTOR PHOTOS
+   ══════════════════════════════════════════════ */
+.logo-preview-box {
+  width: 140px; height: 90px; background: var(--surface2);
+  border: 2px dashed var(--border); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; position: relative; overflow: hidden;
+  transition: border-color var(--transition);
+}
+.logo-preview-box:hover { border-color: var(--accent); }
+
+.dr-photos-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem; padding-top: .75rem;
+}
+.dr-photo-card {
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+}
+.dr-photo-frame {
+  width: 110px; height: 110px; border-radius: 50%;
+  background: var(--surface2); border: 2px dashed var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: border-color var(--transition);
+}
+.dr-photo-frame:hover { border-color: var(--accent); }
+.dr-photo-frame img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+}
+.dr-photo-placeholder { text-align: center; color: var(--text2); font-size: .8rem; }
+.dr-photo-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,.55); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .75rem; font-weight: 600; opacity: 0; transition: opacity .2s;
+}
+.dr-photo-frame:hover .dr-photo-overlay { opacity: 1; }
+.logo-preview-box:hover .dr-photo-overlay { opacity: 1; border-radius: var(--radius); }
+.dr-photo-name { font-size: .82rem; font-weight: 600; color: var(--text); text-align: center; }
+.dr-photo-spec { font-size: .72rem; color: var(--text2); text-align: center; }
+.dr-photo-remove {
+  background: none; border: 1px solid var(--border);
+  color: var(--red); border-radius: var(--radius-sm);
+  padding: .2rem .5rem; font-size: .72rem; cursor: pointer;
+  transition: all var(--transition);
+}
+.dr-photo-remove:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+/* ══════════════════════════════════════════════
+   DENTAL CHART (Treatments modal)
+   ══════════════════════════════════════════════ */
+.dental-chart-section {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: .25rem;
+}
+.dental-chart-head {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
+  margin-bottom: .85rem;
+  font-weight: 600; color: var(--text); font-size: .9rem;
+}
+.teeth-selected-display {
+  display: flex; flex-wrap: wrap; gap: 4px; flex: 1; min-height: 24px;
+}
+.btn-clear-teeth {
+  background: none; border: 1px solid var(--border); color: var(--text2);
+  border-radius: 6px; padding: 2px 10px; font-size: .78rem; cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-clear-teeth:hover { border-color: var(--red); color: var(--red); }
+
+.dental-chart { user-select: none; }
+.dental-jaw { margin-bottom: .25rem; }
+.jaw-label {
+  font-size: .7rem; color: var(--text2); text-transform: uppercase;
+  letter-spacing: .07em; margin-bottom: .35rem; text-align: center;
+}
+.teeth-row {
+  display: flex; gap: 3px; justify-content: center; align-items: flex-end;
+}
+.jaw-divider {
+  width: 2px; background: var(--accent); border-radius: 2px;
+  height: 36px; margin: 0 4px; opacity: .5; align-self: center;
+}
+.dental-midline {
+  height: 6px; background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+  margin: 2px 0;
+}
+
+.tooth-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 34px; height: 42px; border-radius: 8px;
+  background: var(--card); border: 1.5px solid var(--border);
+  cursor: pointer; transition: all .15s ease;
+  position: relative; overflow: hidden;
+}
+.tooth-btn:hover {
+  border-color: var(--accent); background: rgba(0,212,255,.08);
+  transform: translateY(-2px);
+}
+.tooth-btn.selected {
+  background: rgba(0,212,255,.18);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(0,212,255,.35);
+}
+.tooth-btn.selected .tooth-icon { color: var(--accent); }
+.tooth-icon {
+  font-size: .65rem; font-weight: 800; color: var(--text2);
+  font-family: 'Syne', sans-serif;
+}
+.tooth-num {
+  font-size: .58rem; color: var(--text2); margin-top: 1px;
+  font-family: 'DM Sans', sans-serif;
+}
+.tooth-btn.selected .tooth-num { color: var(--accent); }
+
+.tooth-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); border-radius: 5px; padding: 1px 6px;
+  font-size: .72rem; font-family: 'Syne', sans-serif; font-weight: 600;
+}
+.tooth-chip.selected {
+  background: rgba(0,212,255,.15); border-color: var(--accent); color: var(--accent);
+}
+
+.dental-chart-legend {
+  display: flex; gap: 1.2rem; justify-content: center;
+  margin-top: .75rem; font-size: .7rem; color: var(--text2);
+}
+.dental-chart-legend span b { color: var(--text); }
+
+@media(max-width:600px) {
+  .tooth-btn { width: 26px; height: 34px; }
+  .tooth-icon { font-size: .55rem; }
+  .tooth-num  { font-size: .5rem; }
+  .jaw-divider { height: 28px; }
+}
+
+/* ══════════════════════════════════════════════
+   SETTINGS — Doctor Photos & Clinic Logo
+   ══════════════════════════════════════════════ */
+.logo-preview-box {
+  width: 140px; height: 90px; flex-shrink: 0;
+  background: var(--surface2); border: 2px dashed var(--border);
+  border-radius: var(--radius); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; position: relative;
+  overflow: hidden; transition: border-color var(--transition);
+}
+.logo-preview-box:hover { border-color: var(--accent); }
+
+.dr-photos-grid {
+  display: flex; flex-wrap: wrap; gap: 1rem; padding-top: .75rem;
+}
+.dr-photo-card {
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  width: 130px;
+}
+.dr-photo-frame {
+  width: 110px; height: 110px; border-radius: 50%;
+  background: var(--surface2); border: 2px dashed var(--border);
+  overflow: hidden; cursor: pointer; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color var(--transition);
+}
+.dr-photo-frame:hover { border-color: var(--accent); }
+.dr-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.dr-photo-placeholder { text-align: center; color: var(--text2); font-size: .75rem; }
+.dr-photo-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,.55);
+  color: #fff; font-size: .72rem; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .2s;
+}
+.dr-photo-frame:hover .dr-photo-overlay,
+.logo-preview-box:hover .dr-photo-overlay { opacity: 1; }
+.dr-photo-name { font-weight: 600; font-size: .82rem; color: var(--text); text-align: center; }
+.dr-photo-spec { font-size: .72rem; color: var(--text2); text-align: center; }
+.dr-photo-remove {
+  background: none; border: 1px solid var(--red); color: var(--red);
+  border-radius: 5px; padding: 2px 8px; font-size: .72rem; cursor: pointer;
+  transition: all .15s;
+}
+.dr-photo-remove:hover { background: var(--red); color: #fff; }
+
+/* ══════════════════════════════════════════════
+   PATIENT MODAL — Tabs + X-Ray Upload
+   ══════════════════════════════════════════════ */
+.np-tabs {
+  display: flex; gap: .5rem; margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border); padding-bottom: .5rem;
+}
+.np-tab {
+  background: none; border: none; color: var(--text2);
+  padding: .4rem .9rem; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: .875rem;
+  transition: all var(--transition);
+}
+.np-tab:hover { color: var(--text); background: var(--surface2); }
+.np-tab.active { background: var(--accent); color: #000; font-weight: 600; }
+.np-tab-panel { display: block; }
+
+.xray-upload-area {
+  border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 2rem; text-align: center; cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  min-height: 200px; display: flex; align-items: center;
+  justify-content: center; flex-direction: column; position: relative;
+  background: var(--surface2);
+}
+.xray-upload-area:hover,
+.xray-upload-area.drag-over { border-color: var(--accent); background: rgba(0,212,255,.04); }
+.xray-remove-btn {
+  margin-top: .75rem; background: none; border: 1px solid var(--red);
+  color: var(--red); border-radius: 6px; padding: 3px 12px;
+  font-size: .8rem; cursor: pointer; display: inline-block;
+}
+.xray-remove-btn:hover { background: var(--red); color: #fff; }
+
+/* ── Medical Info Enhancements ─────────────────────── */
+.medical-info-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:.5rem }
+.medical-info-header h4 { font-family:'Syne',sans-serif; font-size:1rem; margin:0; color:var(--text) }
+.missing-info { color:var(--text3); font-style:italic }
+.clickable-patient { cursor:pointer; color:var(--accent); transition:color 0.2s }
+.clickable-patient:hover { text-decoration:underline; color:var(--accent2) }
+.empty-state.sm { padding:1.5rem; }
+.empty-state.sm div { font-size:1.5rem; margin-bottom:.5rem }
+.empty-state.sm p { font-size:.8rem }
+
+/* ═══════════════════════════════════════════════════════
+   Settings Tabs
+   ═══════════════════════════════════════════════════════ */
+.settings-tabs {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .75rem;
+}
+.settings-tab {
+  padding: .45rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: .85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .15s;
+}
+.settings-tab:hover  { color: var(--text); border-color: var(--accent); }
+.settings-tab.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+.settings-tab-pane   { display: none; }
+.settings-tab-pane.active { display: block; }
+
+/* ═══════════════════════════════════════════════════════
+   Page Access Control  (.pax-*)
+   Card-per-user layout — no sticky columns, no overflow
+   conflicts. Works inside .page-content { overflow-y:auto }
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Wrapper ── */
+.pax-wrap {
+  padding-bottom: 4rem;
+}
+
+/* ── Toolbar ── */
+.pax-toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.pax-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 .3rem;
+}
+.pax-subtitle {
+  font-size: .82rem;
+  color: var(--text2);
+  margin: 0;
+}
+.pax-toolbar-btns {
+  display: flex;
+  gap: .5rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* ── User cards grid ── */
+.pax-users-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Single user card ── */
+.pax-user-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Card header */
+.pax-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .85rem 1.2rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.pax-card-user {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.pax-uavatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000;
+  font-weight: 800;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pax-uname {
+  font-weight: 700;
+  color: var(--text);
+  font-size: .9rem;
+  line-height: 1.2;
+}
+.pax-urole {
+  font-size: .68rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.07);
+  color: var(--text2);
+  display: inline-block;
+  margin-top: 2px;
+}
+.pax-card-bulk {
+  display: flex;
+  gap: .4rem;
+}
+
+/* Role avatar colors */
+.pax-role-admin        .pax-uavatar { background: #f59e0b; color: #000; }
+.pax-role-doctor       .pax-uavatar { background: #22c55e; color: #000; }
+.pax-role-receptionist .pax-uavatar { background: #3b82f6; color: #fff; }
+.pax-role-manager      .pax-uavatar { background: #8b5cf6; color: #fff; }
+.pax-role-accountant   .pax-uavatar { background: #ec4899; color: #fff; }
+.pax-role-hygienist    .pax-uavatar { background: #06b6d4; color: #000; }
+.pax-role-assistant    .pax-uavatar { background: #f97316; color: #000; }
+
+/* Bulk buttons */
+.pax-bulk-btn {
+  font-size: .7rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.pax-bulk-btn:hover         { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,.06); }
+.pax-bulk-btn.danger:hover  { border-color: var(--red);    color: var(--red);    background: rgba(255,68,102,.06); }
+
+/* ── Table inside card ── */
+.pax-card-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.pax-card-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .8rem;
+  min-width: 420px;
+}
+
+/* Column header row: Page | View | Add | Edit | Delete | Export */
+.pax-card-table thead th {
+  padding: .5rem .75rem;
+  background: var(--bg2);
+  color: var(--text2);
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.pax-card-table thead th:first-child {
+  text-align: left;
+  width: 200px;
+  min-width: 160px;
+}
+.pax-card-table thead th:not(:first-child) {
+  text-align: center;
+  width: 60px;
+}
+
+/* Group header rows */
+.pax-grp-row td {
+  padding: .3rem .75rem;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0, 212, 255, .04);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid rgba(0,212,255,.1);
+}
+
+/* Data rows */
+.pax-row {
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  transition: background .12s;
+}
+.pax-row:last-child { border-bottom: none; }
+.pax-row:hover { background: rgba(255,255,255,.025); }
+
+/* Page name cell */
+.pax-page-cell {
+  padding: .55rem .75rem;
+  text-align: left;
+  white-space: nowrap;
+}
+.pax-page-inner {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.pax-page-icon {
+  font-size: .95rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pax-page-name {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Checkbox cells */
+.pax-cb-cell {
+  text-align: center;
+  padding: .55rem .3rem;
+}
+.pax-cb-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  background: var(--bg2);
+  cursor: pointer;
+  transition: all .15s;
+  position: relative;
+}
+.pax-cb-label:hover {
+  border-color: var(--accent);
+  background: rgba(0,212,255,.07);
+}
+.pax-cb {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+}
+/* Checkmark shown when checked */
+.pax-cb-label::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: transparent;
+  transition: background .12s, transform .12s;
+  transform: scale(0);
+}
+.pax-cb:checked ~ * { display: none; } /* hide nothing — use label styling */
+.pax-cb-label:has(.pax-cb:checked) {
+  border-color: var(--accent);
+  background: rgba(0,212,255,.15);
+}
+.pax-cb-label:has(.pax-cb:checked)::after {
+  background: var(--accent);
+  transform: scale(1);
+}
+
+/* ── Footer ── */
+.pax-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.pax-footer small {
+  color: var(--text2);
+  font-size: .78rem;
+}
+
+/* ── States ── */
+.pax-loading {
+  color: var(--text2);
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: .9rem;
+}
+.pax-error {
+  color: var(--red);
+  padding: 1rem 1.25rem;
+  background: rgba(255,68,102,.08);
+  border: 1px solid rgba(255,68,102,.2);
+  border-radius: 10px;
+  margin: 1rem 0;
+  font-size: .85rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Receipts & Prescriptions — Page Entrance Styles
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes recipPageIn {
+  from { opacity:0; transform:translateY(28px) scale(.98); filter:blur(3px); }
+  to   { opacity:1; transform:translateY(0)    scale(1);   filter:blur(0);   }
+}
+
+@keyframes prescPageIn {
+  from { opacity:0; transform:translateX(-24px) scale(.98); }
+  to   { opacity:1; transform:translateX(0)      scale(1);  }
+}
+
+#pg-recip.active {
+  animation: recipPageIn .42s cubic-bezier(.34,1.2,.64,1) both;
+}
+
+#pg-prescription.active {
+  animation: prescPageIn .42s cubic-bezier(.34,1.2,.64,1) both;
+}
+
+/* Staggered card/row entrance inside these pages */
+#pg-recip.active .recip-card,
+#pg-recip.active tr,
+#pg-recip.active .page-bar {
+  animation: fadeIn .35s ease both;
+  animation-delay: calc(var(--i, 0) * .04s);
+}
+
+#pg-prescription.active .presc-card,
+#pg-prescription.active tr,
+#pg-prescription.active .page-bar {
+  animation: fadeIn .35s ease both;
+  animation-delay: calc(var(--i, 0) * .04s);
+}
+
+/* ── Abilities Page Entrance ── */
+@keyframes abilitiesPageIn {
+  from { opacity:0; transform:scale(.96) translateY(20px); filter:blur(2px); }
+  to   { opacity:1; transform:scale(1)   translateY(0);    filter:blur(0);   }
+}
+
+#pg-abilities.active {
+  animation: abilitiesPageIn .4s cubic-bezier(.34,1.2,.64,1) both;
+}
+
+#pg-abilities.active .ability-card,
+#pg-abilities.active tr,
+#pg-abilities.active .page-bar {
+  animation: fadeIn .35s ease both;
+  animation-delay: calc(var(--i, 0) * .04s);
+}
+
+/* ══════════════════════════════════════════════════════
+   NEW 3D WIDGET STYLES
+   ══════════════════════════════════════════════════════ */
+
+/* ── Shared hint label ── */
+.card-hint {
+  font-size: .7rem;
+  color: var(--text3);
+  letter-spacing: .02em;
+}
+
+/* ── Doctor Orrery card ── */
+.orrery-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 10px);
+  padding: .75rem 1rem .5rem;
+  margin-bottom: 1rem;
+}
+.orrery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-bottom: .5rem;
+}
+.orrery-title {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.orrery-hint {
+  font-size: .7rem;
+  color: var(--text3);
+}
+
+/* ── Finance waterfall card ── */
+.waterfall-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 10px);
+  padding: .75rem 1rem .5rem;
+  margin-bottom: 1rem;
+}
+.waterfall-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-bottom: .5rem;
+}
+.waterfall-title {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.waterfall-hint {
+  font-size: .7rem;
+  color: var(--text3);
+}
+
+/* ── Finance coin3d card (existing CoinStack wrapper) ── */
+.coin3d-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 10px);
+  padding: .75rem 1rem .5rem;
+  margin-bottom: 1rem;
+}
+.coin3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-bottom: .5rem;
+}
+.coin3d-title { font-size: .82rem; font-weight: 600; color: var(--text); }
+.coin3d-hint  { font-size: .7rem; color: var(--text3); }
+
+/* ── Waiting room: pulse3d beside orb ── */
+.pulse3d-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  min-width: 140px;
+}
+.pulse3d-label {
+  font-size: .72rem;
+  color: var(--text3);
+  text-align: center;
+  letter-spacing: .03em;
+}
+
+/* ── X-Ray depth viewer card (in patient detail) ── */
+.xray3d-card {
+  background: rgba(0,6,14,.6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 10px);
+  padding: .75rem 1rem .5rem;
+  margin-bottom: 1rem;
+}
+.xray3d-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-bottom: .5rem;
+}
+.xray3d-title { font-size: .82rem; font-weight: 600; color: #aaccee; }
+.xray3d-hint  { font-size: .7rem; color: var(--text3); }

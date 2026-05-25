@@ -1,0 +1,203 @@
+/* ═══════════════════════════════════════════════════════
+   DentCare Pro — CSS Variables & Design Tokens
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Colors ──────────────────────────────────────── */
+  --bg:       #0a0d14;
+  --bg2:      #111520;
+  --bg3:      #171c2b;
+  --card:     #131825;
+  --surface2: #1a2035;
+  --border:   #1e2640;
+  --accent:   #00d4ff;
+  --accent2:  #00ffb3;
+  --red:      #ff4466;
+  --orange:   #ff8c42;
+  --yellow:   #ffd166;
+  --green:    #06d6a0;
+  --text:     #e8eaf6;
+  --text2:    #7b84a3;
+  --text3:    #4a5070;
+
+  /* ── Spacing & Sizing ────────────────────────────── */
+  --shadow:       0 8px 32px rgba(0,0,0,.5);
+  --radius:       14px;
+  --radius-sm:    8px;
+  --transition:   .25s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
+html { font-size:15px; scroll-behavior:smooth }
+
+body {
+  font-family:'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Utility Classes ───────────────────────────────── */
+.hidden { display:none!important }
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width:5px; height:5px }
+::-webkit-scrollbar-track { background:transparent }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:10px }
+::-webkit-scrollbar-thumb:hover { background:var(--text3) }
+
+/* ── Animations ────────────────────────────────────── */
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+@keyframes slideIn { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:none} }
+@keyframes slideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+@keyframes statPop { from{opacity:0;transform:scale(.9) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+@keyframes badgePulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+@keyframes countUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+@keyframes blobFloat {
+  0%,100%{ transform:translate(0,0) scale(1) }
+  33%     { transform:translate(30px,-30px) scale(1.05) }
+  66%     { transform:translate(-20px,20px) scale(.95) }
+}
+@keyframes toothBounce {
+  0%,100%{ transform:translateY(0) }
+  50%    { transform:translateY(-10px) }
+}
+@keyframes modalIn { from{opacity:0;transform:scale(.92) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+@keyframes toastIn  { from{opacity:0;transform:translateX(100%)} to{opacity:1;transform:none} }
+@keyframes toastOut { from{opacity:1;transform:none} to{opacity:0;transform:translateX(100%)} }
+
+/* ── Arabic / RTL Language Support ─────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   ARABIC / RTL — Complete Layout Fix
+   ═══════════════════════════════════════════════════════ */
+body.lang-ar {
+  direction: rtl;
+  font-family: 'Cairo', 'Tajawal', 'Noto Sans Arabic', 'DM Sans', sans-serif;
+}
+
+/* ── App shell ── */
+body.lang-ar #appScreen          { flex-direction: row-reverse; }
+
+/* ── Sidebar stays on RIGHT in AR ── */
+body.lang-ar #sidebar            { order: 2; border-right: none; border-left: 1px solid var(--border); }
+body.lang-ar #main               { order: 1; }
+
+/* Sidebar accent bar flips to right edge */
+body.lang-ar .nav-item::before   { left: auto; right: 0; border-radius: 2px 0 0 2px; }
+
+/* Sidebar internals */
+body.lang-ar .sidebar-brand      { flex-direction: row-reverse; }
+body.lang-ar .sidebar-user       { flex-direction: row-reverse; }
+body.lang-ar .sidebar-nav        { text-align: right; }
+body.lang-ar .nav-item           { flex-direction: row-reverse; padding: .6rem 1.5rem .6rem 1rem; }
+body.lang-ar .nav-badge          { margin-left: 0; margin-right: auto; }
+body.lang-ar .sidebar-label      { text-align: right; }
+
+/* ── Topbar ── */
+body.lang-ar #topbar             { flex-direction: row-reverse; }
+body.lang-ar .topbar-left        { flex-direction: row-reverse; }
+body.lang-ar .topbar-right       { flex-direction: row-reverse; }
+
+/* ── Page layout ── */
+body.lang-ar .page-bar           { flex-direction: row-reverse; }
+body.lang-ar .page-toolbar       { flex-direction: row-reverse; }
+body.lang-ar .page-heading       { text-align: right; }
+
+/* ── Cards ── */
+body.lang-ar .card-head          { flex-direction: row-reverse; }
+body.lang-ar .stat-card          { text-align: right; }
+body.lang-ar .fin-card           { text-align: right; }
+body.lang-ar .stat-icon          { margin-left: 0; margin-right: auto; }
+
+/* ── Tables ── */
+body.lang-ar table               { direction: rtl; }
+body.lang-ar th                  { text-align: right; }
+body.lang-ar td                  { text-align: right; }
+body.lang-ar .actions            { flex-direction: row-reverse; justify-content: flex-start; }
+
+/* ── Forms ── */
+body.lang-ar input,
+body.lang-ar textarea,
+body.lang-ar select              { text-align: right; direction: rtl; }
+body.lang-ar .form-grid          { direction: rtl; }
+body.lang-ar .form-group label   { text-align: right; display: block; }
+body.lang-ar .form-row           { flex-direction: row-reverse; }
+body.lang-ar .checkbox-wrap      { flex-direction: row-reverse; }
+
+/* ── Modals ── */
+body.lang-ar .modal-head         { flex-direction: row-reverse; }
+body.lang-ar .modal-foot         { flex-direction: row-reverse; justify-content: flex-start; }
+body.lang-ar .modal-body         { text-align: right; }
+body.lang-ar .modal-body .form-group { text-align: right; }
+body.lang-ar .close-btn          { margin-left: 0; margin-right: auto; }
+
+/* ── Tabs & filters ── */
+body.lang-ar .filter-tabs        { flex-direction: row-reverse; }
+body.lang-ar .detail-tabs        { flex-direction: row-reverse; }
+body.lang-ar .np-tabs            { flex-direction: row-reverse; }
+body.lang-ar .tab-bar            { flex-direction: row-reverse; }
+
+/* ── Dashboard ── */
+body.lang-ar .dash-kpi-grid      { direction: rtl; }
+body.lang-ar .dash-qa-grid       { direction: rtl; }
+body.lang-ar .dash-quick-grid    { direction: rtl; }
+
+/* ── Toasts ── */
+body.lang-ar .toast-container    { left: 1rem; right: auto; }
+body.lang-ar .toast              { flex-direction: row-reverse; text-align: right; }
+
+/* ── Page bar search ── */
+body.lang-ar .search-input       { text-align: right; direction: rtl; }
+body.lang-ar .page-bar .search-wrap { flex-direction: row-reverse; }
+
+/* ── Badges & pills ── */
+body.lang-ar .badge              { direction: ltr; } /* keep badge text LTR */
+
+/* ── Detail info grid ── */
+body.lang-ar .detail-info-grid   { direction: rtl; }
+body.lang-ar .detail-info-item   { text-align: right; }
+body.lang-ar .detail-info-item label { text-align: right; }
+
+/* ── Finance ── */
+body.lang-ar .fin-summary        { flex-direction: row-reverse; }
+body.lang-ar .fin-label          { text-align: right; }
+body.lang-ar .fin-value          { text-align: right; }
+
+/* ── Waiting room ── */
+body.lang-ar .page-bar button    { /* keep buttons LTR internally */ }
+
+/* ── Appointments ── */
+body.lang-ar .appt-item          { flex-direction: row-reverse; }
+body.lang-ar .appt-time          { text-align: right; }
+
+/* ── Doctor cards ── */
+body.lang-ar .doctor-card        { text-align: right; }
+
+/* ── Inventory ── */
+body.lang-ar .stock-badge        { margin-left: 0; margin-right: auto; }
+
+/* ── Empty states ── */
+body.lang-ar .empty-state        { text-align: center; } /* keep centered */
+
+/* ── Numbers stay LTR ── */
+body.lang-ar .fin-value,
+body.lang-ar .stat-value,
+body.lang-ar .nav-badge,
+body.lang-ar code,
+body.lang-ar .patient-no         { direction: ltr; unicode-bidi: embed; }
+
+
+
+/* Arabic translations via data attributes (toggled by JS) */
+/* Usage: <span data-en="Save" data-ar="حفظ">Save</span> */
+
+
+/* ── RTL via html[dir] attribute (belt + suspenders) ── */
+html[dir="rtl"] #appScreen        { flex-direction: row-reverse; }
+html[dir="rtl"] #sidebar          { order: 2; border-right: none; border-left: 1px solid var(--border); }
+html[dir="rtl"] #main             { order: 1; }
+html[dir="rtl"] .nav-item::before { left: auto; right: 0; border-radius: 2px 0 0 2px; }
+html[dir="rtl"] #topbar           { flex-direction: row-reverse; }

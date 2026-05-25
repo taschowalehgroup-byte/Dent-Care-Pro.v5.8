@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentCare Pro — Advanced Dental Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modals.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/features.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ LOGIN -->
+<div id="loginScreen" class="screen active">
+  <div class="login-bg">
+    <div id="loginParticles"></div>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="teeth-anim">
+      <svg viewBox="0 0 200 80" class="teeth-svg">
+        <g class="tooth" style="--i:0"><rect x="5"  y="20" width="22" height="50" rx="8"/></g>
+        <g class="tooth" style="--i:1"><rect x="32" y="10" width="22" height="60" rx="8"/></g>
+        <g class="tooth" style="--i:2"><rect x="59" y="5"  width="22" height="65" rx="8"/></g>
+        <g class="tooth" style="--i:3"><rect x="86" y="5"  width="22" height="65" rx="8"/></g>
+        <g class="tooth" style="--i:4"><rect x="113"y="10" width="22" height="60" rx="8"/></g>
+        <g class="tooth" style="--i:5"><rect x="140"y="20" width="22" height="50" rx="8"/></g>
+        <g class="tooth" style="--i:6"><rect x="167"y="28" width="22" height="42" rx="8"/></g>
+      </svg>
+    </div>
+  </div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-icon">🦷</div>
+      <h1>DentCare<span>Pro</span></h1>
+      <p>Advanced Dental Management System</p>
+    </div>
+    <div class="login-form">
+      <div class="form-group">
+        <label>Username</label>
+        <select id="loginUser" class="login-select">
+          <option value="">— Select your username —</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="Enter password">
+      </div>
+      <div id="loginErr" class="login-error hidden">Invalid credentials</div>
+      <button class="btn-login" onclick="App.login()">Access System →</button>
+      <div class="forgot-pw-wrap">
+        <button class="btn-forgot" onclick="App.forgotPassword()">🔒 Forgot Password?</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ APP -->
+<div id="appScreen" class="screen">
+  <aside id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">🦷</span>
+      <div>
+        <div class="brand-name">DentCare<b>Pro</b></div>
+        <div class="brand-ver">v2.0</div>
+      </div>
+    </div>
+    <div class="sidebar-user">
+      <div class="user-avatar" id="sidebarAvatar">A</div>
+      <div>
+        <div class="user-name" id="sidebarName">Admin</div>
+        <div class="user-role" id="sidebarRole">Administrator</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-label" data-en="Main" data-ar="الرئيسية">Main</div>
+      <a class="nav-item active" style="--ni:0" data-page="dashboard" onclick="App.page('dashboard')">
+        <span class="nav-icon">⊞</span><span data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</span>
+      </a>
+
+      <div class="sidebar-label" data-en="Clinical" data-ar="سريري">Clinical</div>
+      <a class="nav-item" style="--ni:1" data-page="waiting" onclick="App.page('waiting')">
+        <span class="nav-icon">🪑</span><span data-en="Waiting Room" data-ar="غرفة الانتظار">Waiting Room</span>
+        <span class="nav-badge danger" id="badgeWaiting" style="display:none">0</span>
+      </a>
+      <a class="nav-item" style="--ni:2" data-page="patients" onclick="App.page('patients')">
+        <span class="nav-icon">👤</span><span data-en="Patients" data-ar="المرضى">Patients</span>
+        <span class="nav-badge" id="badgePatients">0</span>
+      </a>
+      <a class="nav-item" style="--ni:3" data-page="appointments" onclick="App.page('appointments')">
+        <span class="nav-icon">📅</span><span data-en="Appointments" data-ar="المواعيد">Appointments</span>
+        <span class="nav-badge" id="badgeAppts">0</span>
+      </a>
+      <a class="nav-item" style="--ni:4" data-page="calendar" onclick="App.page('calendar')">
+        <span class="nav-icon">🗓️</span><span data-en="Calendar" data-ar="التقويم">Calendar</span>
+      </a>
+      <a class="nav-item" style="--ni:5" data-page="treatments" onclick="App.page('treatments')">
+        <span class="nav-icon">🦷</span><span data-en="Treatments" data-ar="العلاجات">Treatments</span>
+      </a>
+
+      <div class="sidebar-label" data-en="Administration" data-ar="الإدارة">Administration</div>
+      <a class="nav-item" style="--ni:6" data-page="doctors" onclick="App.page('doctors')">
+        <span class="nav-icon">⚕️</span><span data-en="Doctors" data-ar="الأطباء">Doctors</span>
+      </a>
+      <a class="nav-item" style="--ni:7" data-page="abilities" onclick="App.page('abilities')">
+        <span class="nav-icon">🎯</span><span data-en="Abilities" data-ar="القدرات">Abilities</span>
+      </a>
+      <a class="nav-item" style="--ni:8" data-page="finance" onclick="App.page('finance')">
+        <span class="nav-icon">💰</span><span data-en="Finance" data-ar="المالية">Finance</span>
+      </a>
+      <a class="nav-item" style="--ni:9" data-page="inventory" onclick="App.page('inventory')">
+        <span class="nav-icon">📦</span><span data-en="Inventory" data-ar="المخزون">Inventory</span>
+        <span class="nav-badge danger" id="badgeInventory">0</span>
+      </a>
+      <a class="nav-item" style="--ni:10" data-page="analytics" onclick="App.page('analytics')">
+        <span class="nav-icon">📊</span><span data-en="Analytics" data-ar="التحليلات">Analytics</span>
+      </a>
+      <a class="nav-item admin-only" style="--ni:11" data-page="commissions" onclick="App.page('commissions')">
+        <span class="nav-icon">📊</span><span data-en="Commissions" data-ar="العمولات">Commissions</span>
+      </a>
+      <a class="nav-item" style="--ni:12" data-page="installments" onclick="App.page('installments')">
+        <span class="nav-icon">💳</span><span data-en="Payment Plans" data-ar="خطط الدفع">Payment Plans</span>
+      </a>
+      <a class="nav-item" style="--ni:13" data-page="recip" onclick="App.page('recip')">
+        <span class="nav-icon">🧾</span><span data-en="Receipts" data-ar="الإيصالات">Receipts</span>
+      </a>
+      <a class="nav-item" style="--ni:14" data-page="prescription" onclick="App.page('prescription')">
+        <span class="nav-icon">℞</span><span data-en="Prescriptions" data-ar="الوصفات">Prescriptions</span>
+      </a>
+      <a class="nav-item admin-only" style="--ni:15" data-page="passwords" onclick="App.page('passwords')">
+        <span class="nav-icon">🔑</span><span data-en="Passwords" data-ar="كلمات المرور">Passwords</span>
+      </a>
+      <a class="nav-item admin-only" style="--ni:16" data-page="discount_codes" onclick="App.page('discount_codes')">
+        <span class="nav-icon">🏷</span><span data-en="Discount Codes" data-ar="أكواد الخصم">Discount Codes</span>
+      </a>
+      <a class="nav-item admin-only" style="--ni:17" data-page="backup" onclick="App.page('backup')">
+        <span class="nav-icon">💾</span><span data-en="Backup" data-ar="النسخ الاحتياطي">Backup</span>
+      </a>
+      <a class="nav-item admin-only" style="--ni:18" data-page="messages" onclick="App.page('messages')">
+        <span class="nav-icon">✉️</span><span data-en="Messages" data-ar="الرسائل">Messages</span>
+        <span class="nav-badge danger" id="badgeMessages" style="display:none">0</span>
+      </a>
+      <a class="nav-item" style="--ni:19" data-page="settings" onclick="App.page('settings')">
+        <span class="nav-icon">⚙️</span><span data-en="Settings" data-ar="الإعدادات">Settings</span>
+      </a>
+    </nav>
+    <button class="sidebar-logout" onclick="App.logout()">⬡ Logout</button>
+  </aside>
+
+  <main id="main">
+    <header id="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="App.toggleSidebar()">☰</button>
+        <div id="pageTitle" class="page-title">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-date" id="liveTime"></div>
+        <button class="btn-icon" id="searchTriggerBtn" onclick="GlobalSearch.open()" title="Global Search (press /)">🔍 Search</button>
+        <div class="notif-wrap">
+          <button class="btn-icon" id="notifBtn" onclick="Notifications.toggle()" title="Notifications">🔔</button>
+          <span id="notifBadge" style="display:none">0</span>
+          <div id="notifPanel">
+            <div class="notif-head">
+              <span>Notifications</span>
+              <button class="notif-clear-btn" onclick="Notifications.refresh()">Refresh</button>
+            </div>
+            <div id="notifList"></div>
+            <div class="notif-foot">DentCare Pro Notifications</div>
+          </div>
+        </div>
+        <button class="btn-icon" id="themeToggleBtn" onclick="Theme.toggle()" title="Toggle theme">☀️</button>
+        <button class="btn-icon" onclick="Modals.checkFollowUps()" title="Check Follow-up Alerts / تنبيهات المتابعة">🔄</button>
+        <button class="btn-icon" onclick="Modals.toggleLanguage()" title="Toggle Language / تبديل اللغة" id="langToggleBtn">🌐 AR</button>
+        <button class="btn-icon" onclick="Modals.newPatient()" data-en="+ Patient" data-ar="+ مريض">+ Patient</button>
+        <button class="btn-icon accent" onclick="Modals.newAppointment()" data-en="+ Appt" data-ar="+ موعد">+ Appt</button>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="pg-dashboard" class="page-content active">
+      <!-- KPI Cards -->
+      <div class="dash-kpi-grid" id="dashKpiGrid"></div>
+
+
+      <!-- 3D Tooth Widget -->
+      <div class="tooth3d-card">
+        <div class="tooth3d-canvas-wrap">
+          <canvas id="tooth3dCanvas" width="220" height="180"></canvas>
+        </div>
+        <div class="tooth3d-info">
+          <div class="tooth3d-title">🦷 DentCare Pro</div>
+          <div class="tooth3d-sub">Your all-in-one dental clinic management system. Drag the tooth to rotate it.</div>
+          <div class="tooth3d-hint">🖱️ Drag to rotate &nbsp;·&nbsp; Auto-spins on release</div>
+        </div>
+        <div id="dashParticles" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;border-radius:inherit"></div>
+      </div>
+
+      <!-- QUICK ACTIONS (RECEPTION FOCUS) -->
+      <div class="card" style="margin-bottom:1.5rem">
+        <h3 style="margin-bottom:1rem;color:var(--text);font-size:1.1rem;display:flex;align-items:center;gap:.5rem">⚡ Quick Reception Hub</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+          <button class="btn-primary" onclick="Modals.newPatient()" style="height:unset;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;background:linear-gradient(135deg, var(--accent), var(--accent2))">
+            <span style="font-size:1.5rem">👤</span>
+            <span>Register New Patient</span>
+          </button>
+          <button class="btn-primary" onclick="Modals.newAppointment()" style="height:unset;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;background:linear-gradient(135deg, var(--green), #10b981)">
+            <span style="font-size:1.5rem">📅</span>
+            <span>Schedule Appointment</span>
+          </button>
+          <button class="btn-primary" onclick="App.page('patients')" style="height:unset;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;background:linear-gradient(135deg, var(--blue), #3b82f6)">
+            <span style="font-size:1.5rem">🔍</span>
+            <span>Search Records</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Schedule + Quick Actions -->
+      <div class="dash-main-grid">
+        <div class="card dash-schedule-card">
+          <div class="card-head">
+            <h3>Today's Schedule</h3>
+            <button class="btn-all" onclick="App.page('appointments')">ALL →</button>
+          </div>
+          <div class="table-scroll"><table class="data-table">
+            <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="dashSchedBody"></tbody>
+          </table></div>
+        </div>
+        <div class="card dash-quick-card">
+          <div class="card-head"><h3>Quick Actions</h3></div>
+          <div class="dash-qa-list">
+            <button class="dash-qa-btn" onclick="Modals.newPatient()"><span>👤</span>New Patient</button>
+            <button class="dash-qa-btn" onclick="Modals.newAppointment()"><span>📅</span>New Appointment</button>
+            <button class="dash-qa-btn" onclick="Modals.newTransaction()"><span>💳</span>Add Transaction</button>
+            <button class="dash-qa-btn" onclick="App.page('inventory')"><span>📦</span>Inventory</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenue Trend Chart -->
+      <div class="card dash-revenue-card">
+        <div class="card-head"><h3>Revenue Trend (12 months)</h3></div>
+        <div class="dash-chart-wrap">
+          <canvas id="dashRevenueChart" height="120"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAITING ROOM -->
+    <section id="pg-waiting" class="page-content">
+      <!-- 3D Orb -->
+      <div class="orb3d-card">
+        <div class="orb3d-canvas-wrap" id="orb3dMount"></div>
+        <div class="orb3d-info">
+          <div class="orb3d-title">🔮 Queue Status</div>
+          <div class="orb3d-queue-count" id="orb3dCount">0</div>
+          <div class="orb3d-queue-label">patients waiting</div>
+          <div style="font-size:.75rem;color:var(--text3);margin-top:.5rem">Orb pulses faster &amp; turns red as queue grows</div>
+        </div>
+      </div>
+
+      <div class="page-bar">
+        <div style="display:flex;align-items:center;gap:1rem">
+          <h2 style="color:var(--text)">🪑 Waiting Room</h2>
+          <span class="badge badge-urgent" id="waitingCount" style="font-size:1rem;padding:.25rem .75rem">0</span>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="WaitingPage.render()">↺ Refresh</button>
+          <button class="btn-ghost" onclick="WaitingPage.clearAll()" style="color:var(--red)">🗑 Clear All</button>
+          <button class="btn-icon" onclick="Modals.addPatientToQueue()">⏳ Add to Queue</button>
+          <button class="btn-primary" onclick="Modals.newPatient()">+ Register Patient</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>#</th><th>Patient</th><th>Arrived</th><th>Waiting</th><th>Actions</th></tr></thead>
+          <tbody id="waitingBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section id="pg-patients" class="page-content" data-print-title="Patients">
+      <!-- 3D Jaw Chart -->
+      <div class="jaw3d-card">
+        <div class="jaw3d-header">
+          <span class="jaw3d-title">🦷 Interactive Jaw Chart — Click a tooth to view/add treatment</span>
+          <span class="jaw3d-hint">🖱 Drag to rotate · Click tooth to select</span>
+        </div>
+        <div id="jaw3dMount"></div>
+        <div class="jaw3d-selected-info" id="jaw3dInfo">Select a tooth to link a treatment record</div>
+      </div>
+
+      <div class="page-bar">
+        <input type="search" class="search-input" id="patientSearch" placeholder="🔍  Search patients…" oninput="Pages.patients.search(this.value)">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="Pages.patients.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.patients.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.patients.exportJson()">⬇ JSON</button>
+          <button class="btn-primary" onclick="Modals.newPatient()">+ Register Patient</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Age</th><th>Gender</th><th>Insurance</th><th>Registered</th><th>Queue</th><th>Actions</th></tr></thead>
+          <tbody id="patientBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- ABILITIES -->
+    <section id="pg-abilities" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">🎯 Doctor Abilities</h2>
+        <button class="btn-primary" onclick="AbilitiesPage.render()">↺ Refresh</button>
+      </div>
+      <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.25rem">
+        Set which treatments each doctor is qualified to perform.
+        These abilities control doctor availability when booking appointments.
+      </p>
+      <div id="abilitiesGrid" class="doctors-grid"></div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section id="pg-appointments" class="page-content" data-print-title="Appointments">
+      <div class="page-bar">
+        <div class="filter-tabs" id="apptFilters">
+          <button class="ftab active" onclick="Pages.appointments.filter('all',this)">All</button>
+          <button class="ftab" onclick="Pages.appointments.filter('scheduled',this)">Scheduled</button>
+          <button class="ftab" onclick="Pages.appointments.filter('confirmed',this)">Confirmed</button>
+          <button class="ftab" onclick="Pages.appointments.filter('completed',this)">Completed</button>
+          <button class="ftab" onclick="Pages.appointments.filter('cancelled',this)">Cancelled</button>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="Pages.appointments.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.appointments.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.appointments.exportJson()">⬇ JSON</button>
+          <button class="btn-icon" onclick="AppointmentsPage.sendTodayReminders()" title="Send WhatsApp reminders for today's appointments">💬 Reminders</button>
+          <button class="btn-primary" onclick="Modals.newAppointment()">+ Schedule</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Treatment</th><th>Priority</th><th>Cost</th><th>Dr. Commission</th><th>Status</th><th>Discount</th><th>Actions</th></tr></thead>
+          <tbody id="apptBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- DOCTORS -->
+    <section id="pg-doctors" class="page-content" data-print-title="Medical Staff">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">Medical Staff</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="window.print()" title="Print">🖨️ Print</button>
+          <button class="btn-icon" onclick="Pages.doctors.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.doctors.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.doctors.exportJson()">⬇ JSON</button>
+          <button class="btn-primary" onclick="Modals.addDoctor()">+ Add Doctor</button>
+        </div>
+      </div>
+      <!-- 3D Doctor Orrery -->
+      <div class="orrery3d-card">
+        <div class="orrery3d-header">
+          <span class="orrery3d-title">🪐 Doctor Activity Orrery — Planet size = patient load</span>
+          <span class="orrery3d-hint">🖱 Drag to rotate · Each planet = a doctor</span>
+        </div>
+        <div id="orreryMount"></div>
+      </div>
+
+      <div class="doctors-grid" id="doctorsGrid"></div>
+    </section>
+
+    <!-- FINANCE -->
+    <section id="pg-finance" class="page-content" data-print-title="Finance">
+      <!-- 3D Coin Stacks -->
+      <div class="coin3d-card">
+        <div class="coin3d-header">
+          <span class="coin3d-title">💰 Monthly Revenue — 3D View</span>
+          <span class="coin3d-hint">🖱 Drag to rotate · Stack height = revenue</span>
+        </div>
+        <div id="coin3dMount"></div>
+      </div>
+      <div class="page-bar">
+        <div class="filter-tabs" id="finFilters">
+          <button class="ftab active" onclick="Pages.finance.filter('all',this)">All</button>
+          <button class="ftab" onclick="Pages.finance.filter('income',this)">Income</button>
+          <button class="ftab" onclick="Pages.finance.filter('expense',this)">Expense</button>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="Pages.finance.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.finance.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.finance.exportJson()">⬇ JSON</button>
+          <button class="btn-primary" onclick="Modals.newTransaction()">+ Transaction</button>
+        </div>
+      </div>
+      <div class="finance-summary" id="financeSummary"></div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Type</th><th>Amount</th><th>Actions</th></tr></thead>
+          <tbody id="financeBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- INVENTORY -->
+    <section id="pg-inventory" class="page-content">
+      <!-- 3D Molecule -->
+      <div class="mol3d-card">
+        <div class="mol3d-canvas-wrap" id="mol3dMount"></div>
+        <div class="mol3d-info">
+          <div class="mol3d-title">⚗️ Inventory Categories</div>
+          <div style="font-size:.8rem;color:var(--text2);margin-bottom:.4rem">Each atom = a supply category. Drag to spin.</div>
+          <div class="mol3d-legend" id="mol3dLegend"></div>
+        </div>
+      </div>
+
+      <div class="page-bar">
+        <input type="search" class="search-input" id="invSearch" placeholder="🔍  Search inventory…" oninput="Pages.inventory.search(this.value)">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="Pages.inventory.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.inventory.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.inventory.exportJson()">⬇ JSON</button>
+          <button class="btn-primary" onclick="Modals.addInventory()">+ Add Item</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>Item</th><th>Category</th><th>Qty</th><th>Min Stock</th><th>Unit Price</th><th>Supplier</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="invBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- PASSWORDS (Admin Only) -->
+    <section id="pg-passwords" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">User Access Management</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <div class="info-tag">Admin Only</div>
+          <button class="btn-icon" onclick="Pages.passwords.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.passwords.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.passwords.exportJson()">⬇ JSON</button>
+          <button class="btn-icon" onclick="PasswordsPage.checkResetRequests()" title="View pending password reset requests">🔑 Reset Requests</button>
+          <button class="btn-primary" onclick="Modals.newUser()">+ New User</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>User</th><th>Role</th><th>Password</th><th>Actions</th></tr></thead>
+          <tbody id="passwordBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section id="pg-calendar" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">🗓️ Calendar</h2>
+      </div>
+      <div id="calendarWrap" class="card" style="padding:1.5rem"></div>
+    </section>
+
+    <!-- TREATMENTS -->
+    <section id="pg-treatments" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">Treatments</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <input type="text" placeholder="🔍 Search..." oninput="TreatmentsPage.search(this.value)"
+                 style="padding:.45rem .9rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm)">
+          <button class="btn-icon" onclick="TreatmentsPage.importFile()">⬆ Import Excel/JSON</button>
+          <button class="btn-icon" onclick="TreatmentsPage.exportExcel()">⬇ Export Excel</button>
+          <button class="btn-icon" onclick="TreatmentsPage.exportJson()">⬇ Export JSON</button>
+          <button class="btn-icon accent" onclick="TreatmentsPage._addModal()">+ Add Treatment</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>Patient</th><th>Doctor</th><th>Treatment</th><th>Tooth</th><th>Date</th><th>Diagnosis</th><th>Cost</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="treatBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- MESSAGES (Admin Only) -->
+    <section id="pg-messages" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">Messages</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="Pages.messages.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.messages.exportJson()">⬇ JSON</button>
+          <button class="btn-ghost" onclick="Pages.messages.clearAll()">🗑 Clear All</button>
+        </div>
+      </div>
+      <div class="info-tag">Admin Only</div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>From</th><th>Request</th><th>Time</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="messagesBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section id="pg-analytics" class="page-content">
+      <!-- KPI row -->
+      <div class="an-kpi-grid" id="anKpiGrid"></div>
+
+      <!-- 3D Bar Chart -->
+      <div class="bar3d-card">
+        <div class="bar3d-header">
+          <span class="bar3d-title">📊 Revenue — 3D View</span>
+          <div class="bar3d-toggle">
+            <button class="active" id="bar3dBtnRev" onclick="BarChart3D_switchRevenue()">Revenue</button>
+            <button id="bar3dBtnExp" onclick="BarChart3D_switchExpense()">Expenses</button>
+          </div>
+        </div>
+        <div id="bar3dMount"></div>
+      </div>
+
+      <!-- Revenue vs Expenses + Treatment Distribution -->
+      <div class="an-top-grid">
+        <div class="card">
+          <div class="card-head"><h3>Revenue vs Expenses</h3></div>
+          <div class="an-chart-wrap"><canvas id="anRevenueChart" height="180"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Treatment Distribution</h3></div>
+          <div class="an-donut-wrap"><canvas id="anDonutChart" height="220"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Doctor Performance -->
+      <div class="card" style="margin-top:1rem">
+        <div class="card-head"><h3>Doctor Performance — Patients</h3></div>
+        <div class="an-chart-wrap"><canvas id="anDoctorChart" height="160"></canvas></div>
+      </div>
+
+      <!-- Doctor Revenue -->
+      <div class="card" style="margin-top:1rem">
+        <div class="card-head"><h3>Doctor Performance — Revenue</h3></div>
+        <div class="an-chart-wrap"><canvas id="anDoctorRevChart" height="160"></canvas></div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="pg-settings" class="page-content" data-print-title="Settings">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">Settings</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-icon" onclick="EmailReports.generate()" title="Send Monthly Report via Email">📧 Email Report</button>
+          <button class="btn-icon" onclick="window.print()" title="Print this page">🖨️ Print</button>
+        </div>
+      </div>
+      <!-- Settings Tabs (Page Access tab is admin-only) -->
+      <div class="settings-tabs">
+        <button class="settings-tab active" data-tab="general" onclick="SettingsPage.switchTab('general')">⚙️ General</button>
+        <button class="settings-tab admin-only" data-tab="page-access" onclick="SettingsPage.switchTab('page-access')">🔐 Page Access</button>
+      </div>
+      <div id="settingsWrap" class="settings-tab-pane active"></div>
+      <div id="settingsPageAccess" class="settings-tab-pane"></div>
+    </section>
+
+    <!-- BACKUP (Admin Only) -->
+    <section id="pg-backup" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">💾 Backup & Restore</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <div class="info-tag">Admin Only</div>
+          <button class="btn-primary" onclick="BackupPage.createNow()">+ Create Backup Now</button>
+        </div>
+      </div>
+
+      <!-- Status Cards -->
+      <div id="backupStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem"></div>
+
+      <!-- Backup List -->
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <h3 style="color:var(--text)">All Backups</h3>
+          <button class="btn-icon" onclick="BackupPage.render()">↺ Refresh</button>
+        </div>
+        <div class="table-scroll"><table class="data-table">
+          <thead>
+            <tr>
+              <th>Backup Name</th>
+              <th>Created</th>
+              <th>Label</th>
+              <th>Folders</th>
+              <th>DB Size</th>
+              <th>Total Size</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="backupBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- DISCOUNT CODES (Admin Only) -->
+    <section id="pg-discount_codes" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">🏷 Discount Codes</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <div class="info-tag">Admin Only</div>
+          <button class="btn-icon" onclick="Pages.discount_codes.importFile()">⬆ Import</button>
+          <button class="btn-icon" onclick="Pages.discount_codes.exportExcel()">⬇ Excel</button>
+          <button class="btn-icon" onclick="Pages.discount_codes.exportJson()">⬇ JSON</button>
+          <button class="btn-primary" onclick="Modals.newDiscountCode()">+ Add Code</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr><th>Code</th><th>Type</th><th>Value</th><th>Description</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="discountBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- COMMISSIONS -->
+    <section id="pg-commissions" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">📊 Doctor Commission Report</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+          <select id="cm_doctor" onchange="CommissionsPage.filter()" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.4rem .6rem">
+            <option value="">All Doctors</option>
+          </select>
+          <select id="cm_year" onchange="CommissionsPage.filter()" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.4rem .6rem">
+            <option value="">All Years</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+          </select>
+          <select id="cm_month" onchange="CommissionsPage.filter()" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.4rem .6rem">
+            <option value="">All Months</option>
+            <option value="01">January / يناير</option><option value="02">February / فبراير</option>
+            <option value="03">March / مارس</option><option value="04">April / أبريل</option>
+            <option value="05">May / مايو</option><option value="06">June / يونيو</option>
+            <option value="07">July / يوليو</option><option value="08">August / أغسطس</option>
+            <option value="09">September / سبتمبر</option><option value="10">October / أكتوبر</option>
+            <option value="11">November / نوفمبر</option><option value="12">December / ديسمبر</option>
+          </select>
+          <button class="btn-icon" onclick="CommissionsPage.exportExcel()">📥 Export Excel</button>
+          <button class="btn-icon" onclick="CommissionsPage.printReport()">🖨 Print Report</button>
+        </div>
+      </div>
+      <!-- Summary cards -->
+      <div id="commissionSummaryCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem"></div>
+      <div class="card" style="overflow-x:auto">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr>
+            <th>Doctor</th><th>Treatments</th><th>Revenue Generated</th><th>Commission %</th><th>Commission Earned</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="commissionBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- INSTALLMENTS / PAYMENT PLANS -->
+    <section id="pg-installments" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">💳 Payment Plans / الأقساط</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <input type="search" id="installSearch" placeholder="🔍 Search patient…"
+                 oninput="InstallmentsPage.search(this.value)"
+                 style="padding:.45rem .9rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm)">
+          <button class="btn-primary" onclick="InstallmentsPage.openNew()">+ New Plan</button>
+        </div>
+      </div>
+      <div class="card" style="overflow-x:auto">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr>
+            <th>Patient</th><th>Total Amount</th><th>Installments</th><th>Paid</th><th>Remaining</th><th>Progress</th><th>Status</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="installBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- RECIP — Receipt Manager -->
+    <section id="pg-recip" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">🧾 Receipts / الإيصالات</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+          <input type="search" id="recipSearch" placeholder="🔍 Search patient, treatment…"
+                 oninput="RecipPage.search(this.value)"
+                 style="padding:.45rem .9rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm)">
+          <button class="btn-icon" onclick="RecipPage.render()">↺ Refresh</button>
+        </div>
+      </div>
+      <div class="card" style="overflow-x:auto">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Treatment</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr></thead>
+          <tbody id="recipBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- PRESCRIPTION — Prescription Manager -->
+    <section id="pg-prescription" class="page-content">
+      <div class="page-bar">
+        <h2 style="color:var(--text)">℞ Prescriptions / الوصفات</h2>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+          <input type="search" id="prescSearch" placeholder="🔍 Search patient, medication…"
+                 oninput="PrescriptionPage.search(this.value)"
+                 style="padding:.45rem .9rem;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm)">
+          <label style="display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--text);cursor:pointer">
+            <input type="checkbox" id="prescShowAll" onchange="PrescriptionPage.toggleAll(this.checked)"
+                   style="accent-color:var(--accent)">
+            Show all treatments
+          </label>
+          <button class="btn-icon" onclick="PrescriptionPage.render()">↺ Refresh</button>
+        </div>
+      </div>
+      <div class="card" style="overflow-x:auto">
+        <div class="table-scroll"><table class="data-table">
+          <thead><tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Treatment</th>
+            <th>Date</th>
+            <th>Prescription</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr></thead>
+          <tbody id="prescBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="modalOverlay" class="modal-overlay" onclick="Modals.close(event)">
+
+  <!-- NEW PATIENT -->
+  <div id="modalNewPatient" class="modal" style="display:none">
+    <div class="modal-head"><h3>🦷 Register New Patient</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <!-- Tab Bar -->
+      <div class="np-tabs">
+        <button class="np-tab active" onclick="Modals._npTab('info',this)">👤 Patient Info</button>
+        <button class="np-tab" onclick="Modals._npTab('xray',this)">🩻 X-Ray Upload</button>
+      </div>
+
+      <!-- Tab: Info -->
+      <div id="npTabInfo" class="np-tab-panel active">
+        <div class="form-grid">
+          <div class="form-group"><label>Full Name *</label><input id="np_name" placeholder="Patient full name"></div>
+          <div class="form-group"><label>Phone *</label><input id="np_phone" placeholder="Phone number"></div>
+          <div class="form-group"><label>Date of Birth</label><input id="np_dob" type="date"></div>
+          <div class="form-group"><label>Gender</label><select id="np_gender"><option value="">Select</option><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></div>
+          <div class="form-group"><label>Email</label><input id="np_email" type="email" placeholder="Email address"></div>
+          <div class="form-group"><label>Occupation</label><input id="np_occupation" placeholder="Job title"></div>
+          <div class="form-group"><label>Blood Type</label><select id="np_blood"><option value="">Unknown</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+          <div class="form-group"><label>Insurance</label><input id="np_insurance" placeholder="Insurance provider"></div>
+          <div class="form-group"><label>Referral Source</label><select id="np_ref"><option value="">Select</option><option>Google</option><option>Social Media</option><option>Friend/Family</option><option>Doctor Referral</option><option>Walk-in</option></select></div>
+          <div class="form-group"><label>Payment Method</label><select id="np_pay"><option value="cash">Cash</option><option value="card">Card</option><option value="insurance">Insurance</option><option value="installment">Installment</option></select></div>
+          <div class="form-group full"><label>Medical Conditions</label><input id="np_conditions" placeholder="e.g. Diabetes, Hypertension"></div>
+          <div class="form-group full"><label>Allergies</label><input id="np_allergies" placeholder="e.g. Penicillin, Latex"></div>
+          <div class="form-group full"><label>Dental Concerns</label><input id="np_concerns" placeholder="Main dental concerns"></div>
+          <div class="form-group full"><label>Address</label><input id="np_address" placeholder="Home address"></div>
+        </div>
+      </div>
+
+      <!-- Tab: X-Ray -->
+      <div id="npTabXray" class="np-tab-panel" style="display:none">
+        <div class="xray-upload-area" id="xrayDropZone"
+             onclick="document.getElementById('xrayFileInp').click()"
+             ondragover="event.preventDefault();this.classList.add('drag-over')"
+             ondragleave="this.classList.remove('drag-over')"
+             ondrop="event.preventDefault();this.classList.remove('drag-over');Modals._handleXrayDrop(event)">
+          <div id="xrayPreviewWrap" style="display:none">
+            <img id="xrayPreviewImg" style="max-width:100%;max-height:320px;border-radius:8px;object-fit:contain">
+            <div class="xray-remove-btn" onclick="event.stopPropagation();Modals._clearXray()">✕ Remove</div>
+          </div>
+          <div id="xrayUploadPrompt">
+            <div style="font-size:3rem">🩻</div>
+            <p style="color:var(--text2);margin:.5rem 0">Click or drag &amp; drop X-ray image here</p>
+            <small style="color:var(--text-muted,var(--text2))">Supports JPG, PNG, WEBP — saved to patients.json</small>
+          </div>
+        </div>
+        <input type="file" id="xrayFileInp" accept="image/*" style="display:none" onchange="Modals._handleXrayFile(this)">
+        <div class="form-grid" style="margin-top:1rem">
+          <div class="form-group"><label>X-Ray Date</label><input type="date" id="np_xray_date" value="${new Date().toISOString().split('T')[0]}"></div>
+          <div class="form-group"><label>X-Ray Notes</label><input type="text" id="np_xray_notes" placeholder="e.g. Panoramic, Bitewing..."></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.registerPatient()">✓ Register Patient</button>
+    </div>
+  </div>
+
+  <!-- NEW APPOINTMENT -->
+  <div id="modalNewAppt" class="modal" style="display:none">
+    <div class="modal-head"><h3>📅 Schedule Appointment</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label>Patient *</label><select id="ap_patient"><option value="">Select patient…</option></select></div>
+        <div class="form-group full"><label>Doctor *</label><select id="ap_doctor"><option value="">Select doctor…</option></select></div>
+        <div class="form-group"><label>Date *</label><input id="ap_date" type="date"></div>
+        <div class="form-group"><label>Time *</label><input id="ap_time" type="time"></div>
+        <div class="form-group"><label>Duration</label><select id="ap_dur"><option value="15">15 min</option><option value="30" selected>30 min</option><option value="45">45 min</option><option value="60">1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select></div>
+        <div class="form-group"><label>Priority</label><select id="ap_priority"><option value="normal">Normal</option><option value="urgent">Urgent</option><option value="emergency">Emergency</option></select></div>
+        <div class="form-group full"><label>Treatment Type</label><select id="ap_type"><option value="">Select type…</option><option>General Checkup</option><option>Cleaning/Scaling</option><option>Filling</option><option>Root Canal</option><option>Extraction</option><option>Crown/Bridge</option><option>Implant</option><option>Orthodontics</option><option>Cosmetic</option><option>Emergency</option></select></div>
+        <div class="form-group full"><label>Chief Complaint</label><input id="ap_complaint" placeholder="Main reason for visit"></div>
+        <div class="form-group full"><label>Notes</label><input id="ap_notes" placeholder="Additional notes"></div>
+        <div class="form-group"><label>Payment Method</label>
+          <select id="ap_pay_method">
+            <option value="">Select…</option>
+            <option value="cash">Cash</option>
+            <option value="card">Card</option>
+            <option value="insurance">Insurance</option>
+            <option value="installment">Installment</option>
+          </select>
+        </div>
+        <div class="form-group"><label>🏷 Discount Code</label>
+          <input id="ap_discount_code" placeholder="e.g. 10 = 10% off, PROMO20 = 20% off">
+        </div>
+        <div class="form-group">
+          <label>Appointment Cost (EGP)</label>
+          <input id="ap_cost" type="number" min="0" step="0.01" placeholder="0.00"
+                 oninput="Modals._apptCommissionPreview()">
+        </div>
+      </div>
+
+      <!-- Live commission preview -->
+      <div id="apptCommPreview" style="display:none;margin-top:.75rem;background:var(--surface2);border-radius:10px;padding:.85rem 1rem">
+        <p style="font-size:.75rem;font-weight:700;color:var(--text2);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.04em">💰 Commission Breakdown</p>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.85rem">
+          <div><span style="color:var(--text2)">Total Received:</span> <strong id="apptCommTotal">—</strong></div>
+          <div><span style="color:var(--text2)">Doctor Rate:</span> <strong id="apptCommRate">—</strong></div>
+          <div><span style="color:var(--accent)">Doctor Earns:</span> <strong id="apptCommEarns" style="color:var(--accent)">—</strong></div>
+          <div><span style="color:var(--text2)">Clinic Keeps:</span> <strong id="apptCommClinic" style="color:var(--green)">—</strong></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.scheduleAppt()">✓ Schedule</button>
+    </div>
+  </div>
+
+  <!-- ADD DOCTOR -->
+  <div id="modalAddDoctor" class="modal" style="display:none;max-width:680px">
+    <div class="modal-head"><h3 id="drModalTitle">⚕️ Add Doctor</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body" style="max-height:75vh;overflow-y:auto">
+
+      <!-- TAB BAR -->
+      <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem">
+        <button id="drTab1" onclick="Modals._drTab(1)"
+          style="padding:.5rem 1.1rem;background:none;border:none;border-bottom:3px solid var(--accent);color:var(--accent);font-weight:700;cursor:pointer;font-size:.85rem;margin-bottom:-2px">
+          👤 Personal Info
+        </button>
+        <button id="drTab2" onclick="Modals._drTab(2)"
+          style="padding:.5rem 1.1rem;background:none;border:none;border-bottom:3px solid transparent;color:var(--text2);cursor:pointer;font-size:.85rem;margin-bottom:-2px">
+          💰 Commissions
+        </button>
+        <button id="drTab3" onclick="Modals._drTab(3)"
+          style="padding:.5rem 1.1rem;background:none;border:none;border-bottom:3px solid transparent;color:var(--text2);cursor:pointer;font-size:.85rem;margin-bottom:-2px">
+          🎯 Abilities
+        </button>
+      </div>
+
+      <!-- TAB 1: PERSONAL INFO -->
+      <div id="drTabContent1">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Full Name *</label>
+            <input id="dr_name" placeholder="e.g. Ahmed Hassan" oninput="Actions._previewDoctorUsername(this.value)">
+            <small id="dr_name_err" style="color:var(--red);display:none">⚠ Full name is required</small>
+          </div>
+          <div class="form-group full">
+            <label>Specialty *</label>
+            <select id="dr_spec">
+              <option value="">Select specialty…</option>
+              <option>General Dentistry</option>
+              <option>Orthodontics</option>
+              <option>Endodontics</option>
+              <option>Periodontics</option>
+              <option>Oral Surgery</option>
+              <option>Prosthodontics</option>
+              <option>Pediatric Dentistry</option>
+            </select>
+            <small id="dr_spec_err" style="color:var(--red);display:none">⚠ Specialty is required</small>
+          </div>
+          <div class="form-group"><label>Phone</label><input id="dr_phone" placeholder="Phone number"></div>
+          <div class="form-group"><label>Email</label><input id="dr_email" type="email" placeholder="Email address"></div>
+          <div class="form-group"><label>License #</label><input id="dr_lic" placeholder="License number"></div>
+          <div class="form-group"><label>National ID</label><input id="dr_national_id" placeholder="National ID number"></div>
+          <div class="form-group"><label>Room</label><input id="dr_room" placeholder="e.g. Room 3"></div>
+          <div class="form-group"><label>Hire Date</label><input id="dr_hire_date" type="date"></div>
+          <div class="form-group full"><label>Schedule</label><input id="dr_sched" placeholder="e.g. Sun–Thu 9AM–5PM"></div>
+          <div class="form-group full"><label>Address</label><input id="dr_address" placeholder="Home address"></div>
+          <div class="form-group full"><label>Emergency Contact</label><input id="dr_emergency" placeholder="Name & phone of emergency contact"></div>
+          <div class="form-group full"><label>Notes</label><textarea id="dr_notes" rows="2" style="resize:vertical" placeholder="Any additional notes about this doctor…"></textarea></div>
+        </div>
+        <!-- Credentials preview -->
+        <div id="drCredentialsPreview" style="display:none;margin-top:1rem;padding:1rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border)">
+          <p style="margin:0 0 .5rem;font-size:.78rem;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.05em">🔑 Auto-generated Login Credentials</p>
+          <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+            <div><span style="font-size:.72rem;color:var(--text2)">Username</span><br>
+              <code id="drPreviewUsername" style="font-size:1rem;letter-spacing:2px;color:var(--accent)">—</code></div>
+            <div><span style="font-size:.72rem;color:var(--text2)">Password</span><br>
+              <code id="drPreviewPassword" style="font-size:1rem;letter-spacing:2px;color:var(--green)">—</code></div>
+          </div>
+          <p style="margin:.5rem 0 0;font-size:.72rem;color:var(--text2)">⚠️ Save these credentials — the password won't be shown again.</p>
+        </div>
+      </div>
+
+      <!-- TAB 2: COMMISSIONS -->
+      <div id="drTabContent2" style="display:none">
+        <p style="font-size:.83rem;color:var(--text2);margin-bottom:1rem">
+          Set the percentage of each appointment payment that goes to this doctor as commission.
+          Example: if you receive 4000 EGP and the doctor's filling rate is 25%, they earn 1000 EGP.
+        </p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>General Checkup / Cleaning (%)</label>
+            <input id="dr_com_filling" type="number" min="0" max="100" step="1" value="20" placeholder="20">
+          </div>
+          <div class="form-group">
+            <label>Filling (%)</label>
+            <input id="dr_com_crown" type="number" min="0" max="100" step="1" value="20" placeholder="20">
+          </div>
+          <div class="form-group">
+            <label>Root Canal (%)</label>
+            <input id="dr_com_root" type="number" min="0" max="100" step="1" value="20" placeholder="20">
+          </div>
+          <div class="form-group">
+            <label>Extraction (%)</label>
+            <input id="dr_com_ext" type="number" min="0" max="100" step="1" value="20" placeholder="20">
+          </div>
+          <div class="form-group">
+            <label>Implant (%)</label>
+            <input id="dr_com_imp" type="number" min="0" max="100" step="1" value="25" placeholder="25">
+          </div>
+          <div class="form-group">
+            <label>Orthodontics (%)</label>
+            <input id="dr_com_ortho" type="number" min="0" max="100" step="1" value="20" placeholder="20">
+          </div>
+          <div class="form-group">
+            <label>Crown / Bridge (%)</label>
+            <input id="dr_com_other" type="number" min="0" max="100" step="1" value="15" placeholder="15">
+          </div>
+          <div class="form-group">
+            <label>Other Treatments (%)</label>
+            <input id="dr_com_misc" type="number" min="0" max="100" step="1" value="15" placeholder="15">
+          </div>
+        </div>
+        <!-- Live calculator -->
+        <div style="background:var(--surface2);border-radius:10px;padding:1rem;margin-top:.5rem">
+          <p style="font-size:.78rem;font-weight:700;color:var(--text2);margin-bottom:.6rem">💡 Commission Calculator Preview</p>
+          <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+            <input id="dr_calc_amount" type="number" min="0" step="100" placeholder="Appointment amount (EGP)"
+                   oninput="Modals._calcDrCommission()"
+                   style="flex:1;min-width:160px;padding:.4rem .7rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text)">
+            <select id="dr_calc_type" onchange="Modals._calcDrCommission()"
+                    style="flex:1;min-width:140px;padding:.4rem .7rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text)">
+              <option value="dr_com_filling">General Checkup</option>
+              <option value="dr_com_crown">Filling</option>
+              <option value="dr_com_root">Root Canal</option>
+              <option value="dr_com_ext">Extraction</option>
+              <option value="dr_com_imp">Implant</option>
+              <option value="dr_com_ortho">Orthodontics</option>
+              <option value="dr_com_other">Crown / Bridge</option>
+              <option value="dr_com_misc">Other</option>
+            </select>
+            <div id="dr_calc_result" style="font-size:1rem;font-weight:700;color:var(--accent);min-width:140px">
+              Doctor earns: —
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: ABILITIES -->
+      <div id="drTabContent3" style="display:none">
+        <p style="font-size:.83rem;color:var(--text2);margin-bottom:1rem">
+          Select which treatments this doctor is qualified to perform.
+          When booking an appointment, only doctors with the matching ability will be shown.
+        </p>
+        <div style="display:flex;justify-content:flex-end;gap:.4rem;margin-bottom:.75rem">
+          <button class="btn-icon" onclick="Modals._drAbilitySelectAll(true)"  style="font-size:.78rem;padding:.3rem .65rem">✓ Select All</button>
+          <button class="btn-icon" onclick="Modals._drAbilitySelectAll(false)" style="font-size:.78rem;padding:.3rem .65rem">✕ Clear All</button>
+        </div>
+        <div id="drAbilitiesCheckboxes" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.4rem"></div>
+      </div>
+
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" id="drSubmitBtn" onclick="Actions.addDoctor()">✓ Add Doctor</button>
+    </div>
+  </div>
+
+  <!-- ADD TRANSACTION -->
+  <div id="modalNewTx" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>💰 Add Transaction</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label>Description *</label><input id="tx_desc" placeholder="Transaction description"></div>
+        <div class="form-group"><label>Type *</label><select id="tx_type"><option value="income">Income</option><option value="expense">Expense</option></select></div>
+        <div class="form-group"><label>Category</label><select id="tx_cat"><option>Treatment</option><option>Consultation</option><option>Supplies</option><option>Equipment</option><option>Salary</option><option>Rent</option><option>Utilities</option><option>Other</option></select></div>
+        <div class="form-group"><label>Amount (E£) *</label><input id="tx_amount" type="number" placeholder="0.00"></div>
+        <div class="form-group"><label>Date *</label><input id="tx_date" type="date"></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.addTransaction()">✓ Add Transaction</button>
+    </div>
+  </div>
+
+  <!-- ADD INVENTORY -->
+  <div id="modalAddInv" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>📦 Add Inventory Item</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label>Item Name *</label><input id="inv_name" placeholder="Item name"></div>
+        <div class="form-group full"><label>Category</label><select id="inv_cat"><option value="consumable">Consumable</option><option value="equipment">Equipment</option><option value="medication">Medication</option><option value="material">Material</option></select></div>
+        <div class="form-group"><label>Quantity *</label><input id="inv_qty" type="number" placeholder="0"></div>
+        <div class="form-group"><label>Min Stock Level</label><input id="inv_min" type="number" placeholder="5"></div>
+        <div class="form-group"><label>Unit Price (E£)</label><input id="inv_price" type="number" placeholder="0.00"></div>
+        <div class="form-group"><label>Supplier</label><input id="inv_supplier" placeholder="Supplier name"></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.addInventoryItem()">✓ Add Item</button>
+    </div>
+  </div>
+
+  <!-- PATIENT DETAIL -->
+  <div id="modalPatientDetail" class="modal modal-xl" style="display:none">
+    <div class="modal-head">
+      <h3 id="detailPatientName">Patient Details</h3>
+      <button class="close-btn" onclick="Modals.close()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-tabs">
+        <button class="dtab active" onclick="UI.detailTab('overview',this)">Overview</button>
+        <button class="dtab" onclick="UI.detailTab('treatments',this)">Treatments</button>
+        <button class="dtab" onclick="UI.detailTab('appointments',this)">Appointments</button>
+        <button class="dtab" onclick="UI.detailTab('billing',this)">Billing</button>
+        <button class="dtab" onclick="UI.detailTab('xray',this)">🩻 X-Ray</button>
+        <button class="dtab" onclick="UI.detailTab('chart',this)">🦷 Chart</button>
+      </div>
+      <div id="detailOverview" class="detail-panel active"></div>
+      <div id="detailTreatments" class="detail-panel"></div>
+      <div id="detailAppointments" class="detail-panel"></div>
+      <div id="detailBilling" class="detail-panel"></div>
+      <div id="detailXray" class="detail-panel"></div>
+      <div id="detailChart" class="detail-panel"></div>
+    </div>
+  </div>
+
+  <!-- APPOINTMENT DETAIL -->
+  <div id="modalApptDetail" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>📅 Appointment Details</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div id="apptDetailBody" class="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" onclick="Modals.close()">Close</button></div>
+  </div>
+
+  <!-- TRANSACTION DETAIL -->
+  <div id="modalTxDetail" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>💰 Transaction Details</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div id="txDetailBody" class="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" onclick="Modals.close()">Close</button></div>
+  </div>
+
+  <!-- INVENTORY DETAIL -->
+  <div id="modalInvDetail" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>📦 Item Details</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div id="invDetailBody" class="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" onclick="Modals.close()">Close</button></div>
+  </div>
+
+  <!-- DOCTOR DETAIL -->
+  <div id="modalDocDetail" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>👨‍⚕️ Doctor Details</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div id="docDetailBody" class="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" onclick="Modals.close()">Close</button></div>
+  </div>
+
+  <!-- USER DETAIL -->
+  <div id="modalUserDetail" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>👤 User Details</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div id="userDetailBody" class="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" onclick="Modals.close()">Close</button></div>
+  </div>
+
+  <!-- NEW USER -->
+  <div id="modalNewUser" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>👤 User Account</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label>Username *</label><input id="nu_user" placeholder="Username"></div>
+        <div class="form-group full"><label>Password *</label><input id="nu_pass" placeholder="Password (leave blank on edit to keep existing)" type="text"></div>
+        <div class="form-group full"><label>Role</label>
+          <select id="nu_role">
+            <option value="receptionist">Receptionist</option>
+            <option value="doctor">Doctor</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot" id="userModalFoot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.addUser()">✓ Create User</button>
+    </div>
+  </div>
+
+  <!-- NEW DISCOUNT CODE -->
+  <div id="modalNewDiscountCode" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>🏷 Discount Code</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label>Code *</label><input id="dc_code" placeholder="e.g. PROMO10, SUMMER20" style="text-transform:uppercase"></div>
+        <div class="form-group"><label>Discount Type</label>
+          <select id="dc_type">
+            <option value="percent">Percent (%)</option>
+            <option value="fixed">Fixed Amount (E£)</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Value *</label><input id="dc_value" type="number" min="0" placeholder="e.g. 10 for 10% or 50 for E£50"></div>
+        <div class="form-group full"><label>Description</label><input id="dc_desc" placeholder="Optional description"></div>
+        <div class="form-group full"><label>Status</label>
+          <select id="dc_active">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot" id="discountModalFoot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.addDiscountCode()">✓ Save Code</button>
+    </div>
+  </div>
+
+  <!-- DISCOUNT CODE DETAIL -->
+  <div id="modalDiscountDetail" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>🏷 Discount Code Details</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div id="discountDetailBody" class="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" onclick="Modals.close()">Close</button></div>
+  </div>
+
+  <!-- ADD PATIENT TO WAITING QUEUE -->
+  <div id="modalAddToQueue" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>⏳ Add Patient to Waiting Room</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label>Patient *</label><select id="queue_patient"><option value="">Select patient…</option></select></div>
+        <div class="form-group full"><label>Notes (optional)</label><input id="queue_notes" placeholder="e.g. Urgent, Arrived early..."></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.addPatientToQueue()">⏳ Add to Queue</button>
+    </div>
+  </div>
+
+  <!-- CONFIRM TREATMENT MODAL -->
+  <div id="modalConfirmTreatment" class="modal modal-sm" style="display:none">
+    <div class="modal-head"><h3>✅ Confirm Treatment</h3><button class="close-btn" onclick="Modals.close()">×</button></div>
+    <div class="modal-body">
+      <div id="confirmTxInfo" style="margin-bottom:1rem;padding:.75rem;background:var(--surface2);border-radius:var(--radius-sm);font-size:.9rem"></div>
+      <div class="form-grid">
+        <div class="form-group full"><label>Treatment Cost (E£) *</label><input id="ct_cost" type="number" min="0" placeholder="0.00"></div>
+        <div class="form-group full">
+          <label>Discount Code <span style="color:var(--text2);font-size:.8rem">(optional)</span></label>
+          <div style="display:flex;gap:.5rem">
+            <input id="ct_discount_code" placeholder="Enter discount code…" style="flex:1">
+            <button class="btn-icon" onclick="Actions.validateDiscountCode()">Apply</button>
+          </div>
+          <div id="ct_discount_info" style="margin-top:.4rem;font-size:.85rem;color:var(--green);display:none"></div>
+        </div>
+        <div class="form-group full">
+          <div style="display:flex;justify-content:space-between;padding:.75rem 1rem;background:var(--surface2);border-radius:var(--radius-sm);font-weight:600;font-size:1.05rem">
+            <span>Final Amount:</span>
+            <span id="ct_final_amount" style="color:var(--green)">E£ 0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="Modals.close()">Cancel</button>
+      <button class="btn-primary" onclick="Actions.confirmTreatmentModal()">✓ Confirm & Add to Finance</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<!-- Global Search Overlay -->
+<div id="globalSearchOverlay">
+  <div class="gs-box">
+    <div class="gs-input-wrap">
+      <span class="gs-icon">🔍</span>
+      <input id="globalSearchInput" type="text" placeholder="Search patients, doctors, appointments…" autocomplete="off">
+      <span class="gs-esc">ESC</span>
+    </div>
+    <div id="gsResults">
+      <div class="gs-hint">Type a patient name, appointment, or doctor…</div>
+    </div>
+    <div class="gs-shortcuts" id="gsShortcutList">
+      <div class="gs-shortcut-item" data-shortcut-page="dashboard"><span class="gs-key">D</span> Dashboard</div>
+      <div class="gs-shortcut-item" data-shortcut-page="patients"><span class="gs-key">P</span> Patients</div>
+      <div class="gs-shortcut-item" data-shortcut-page="appointments"><span class="gs-key">A</span> Appointments</div>
+      <div class="gs-shortcut-item" data-shortcut-page="appointments" data-shortcut-action="add"><span class="gs-key">N</span> New Appt</div>
+      <div class="gs-shortcut-item" data-shortcut-page="waiting"><span class="gs-key">W</span> Waiting Room</div>
+      <div class="gs-shortcut-item" data-shortcut-page="finance"><span class="gs-key">F</span> Finance</div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient Rating Overlay -->
+<div id="ratingOverlay">
+  <div class="rating-box">
+    <div class="rating-emoji">⭐</div>
+    <div class="rating-title">How was your visit?</div>
+    <div class="rating-sub">Rate your experience for <strong id="ratingPatientName"></strong></div>
+    <div class="rating-stars">
+      <span class="rating-star" data-val="1"
+        onmouseenter="Ratings.hoverStar(1)" onmouseleave="Ratings.clearHover()"
+        onclick="Ratings._setStars(1)">★</span>
+      <span class="rating-star" data-val="2"
+        onmouseenter="Ratings.hoverStar(2)" onmouseleave="Ratings.clearHover()"
+        onclick="Ratings._setStars(2)">★</span>
+      <span class="rating-star" data-val="3"
+        onmouseenter="Ratings.hoverStar(3)" onmouseleave="Ratings.clearHover()"
+        onclick="Ratings._setStars(3)">★</span>
+      <span class="rating-star" data-val="4"
+        onmouseenter="Ratings.hoverStar(4)" onmouseleave="Ratings.clearHover()"
+        onclick="Ratings._setStars(4)">★</span>
+      <span class="rating-star" data-val="5"
+        onmouseenter="Ratings.hoverStar(5)" onmouseleave="Ratings.clearHover()"
+        onclick="Ratings._setStars(5)">★</span>
+    </div>
+    <div class="rating-foot">
+      <button class="rating-skip" onclick="Ratings.skip()">Skip</button>
+      <button class="rating-submit" id="ratingSubmitBtn" disabled onclick="Ratings.submit()">Submit Rating</button>
+    </div>
+  </div>
+</div>
+
+<!-- Tooth Loader Overlay -->
+<div id="toothLoader">
+  <div class="tooth-loader-row">
+    <div class="tl-tooth"></div>
+    <div class="tl-tooth"></div>
+    <div class="tl-tooth"></div>
+    <div class="tl-tooth"></div>
+    <div class="tl-tooth"></div>
+    <div class="tl-tooth"></div>
+    <div class="tl-tooth"></div>
+  </div>
+  <div class="tooth-loader-text">Loading…</div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<!-- ═══════════ JS Modules (load order matters) ═══════════ -->
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/pages/dashboard.js"></script>
+<script src="js/pages/patients.js"></script>
+<script src="js/pages/appointments.js"></script>
+<script src="js/pages/doctors.js"></script>
+<script src="js/pages/finance.js"></script>
+<script src="js/pages/inventory.js"></script>
+<script src="js/pages/passwords.js"></script>
+<script src="js/pages/discount_codes.js"></script>
+<script src="js/pages/backup.js"></script>
+<script src="js/pages/messages.js"></script>
+<script src="js/pages/calendar.js"></script>
+<script src="js/pages/treatments.js"></script>
+<script src="js/pages/settings.js"></script>
+<script src="js/pages/page_access.js"></script>
+<script src="js/pages/analytics.js"></script>
+<script src="js/pages/waiting.js"></script>
+<script src="js/pages/dental_chart.js"></script>
+<script src="js/pages/commissions.js"></script>
+<script src="js/pages/installments.js"></script>
+<script src="js/pages/recip.js"></script>
+<script src="js/pages/abilities.js"></script>
+<script src="js/pages/prescription.js"></script>
+<script src="js/modals.js"></script>
+<script src="js/actions.js"></script>
+<script src="js/threed_widgets.js"></script>
+<script src="js/features.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

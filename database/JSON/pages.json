@@ -1,0 +1,523 @@
+{
+  "_meta": {
+    "description": "User page access permissions — managed by admin in Settings > Page Access",
+    "updated": "2026-05-24T16:55:46.152Z",
+    "version": "1.0"
+  },
+  "pages": [
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "icon": "📊",
+      "group": "main"
+    },
+    {
+      "id": "patients",
+      "label": "Patients",
+      "icon": "🦷",
+      "group": "clinical"
+    },
+    {
+      "id": "appointments",
+      "label": "Appointments",
+      "icon": "📅",
+      "group": "clinical"
+    },
+    {
+      "id": "calendar",
+      "label": "Calendar",
+      "icon": "🗓",
+      "group": "clinical"
+    },
+    {
+      "id": "treatments",
+      "label": "Treatments",
+      "icon": "💉",
+      "group": "clinical"
+    },
+    {
+      "id": "doctors",
+      "label": "Doctors",
+      "icon": "👨‍⚕️",
+      "group": "clinical"
+    },
+    {
+      "id": "waiting",
+      "label": "Waiting Room",
+      "icon": "⏳",
+      "group": "clinical"
+    },
+    {
+      "id": "recip",
+      "label": "Receipts",
+      "icon": "🧾",
+      "group": "finance"
+    },
+    {
+      "id": "prescription",
+      "label": "Prescriptions",
+      "icon": "℞",
+      "group": "clinical"
+    },
+    {
+      "id": "finance",
+      "label": "Finance",
+      "icon": "💰",
+      "group": "finance"
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory",
+      "icon": "📦",
+      "group": "finance"
+    },
+    {
+      "id": "installments",
+      "label": "Payment Plans",
+      "icon": "💳",
+      "group": "finance"
+    },
+    {
+      "id": "commissions",
+      "label": "Commissions",
+      "icon": "📈",
+      "group": "finance"
+    },
+    {
+      "id": "discount_codes",
+      "label": "Discount Codes",
+      "icon": "🏷",
+      "group": "finance"
+    },
+    {
+      "id": "analytics",
+      "label": "Analytics",
+      "icon": "📉",
+      "group": "reports"
+    },
+    {
+      "id": "messages",
+      "label": "Messages",
+      "icon": "💬",
+      "group": "admin"
+    },
+    {
+      "id": "passwords",
+      "label": "Passwords",
+      "icon": "🔑",
+      "group": "admin"
+    },
+    {
+      "id": "settings",
+      "label": "Settings",
+      "icon": "⚙️",
+      "group": "admin"
+    },
+    {
+      "id": "backup",
+      "label": "Backup & Restore",
+      "icon": "🗄",
+      "group": "admin"
+    },
+    {
+      "id": "abilities",
+      "label": "Abilities",
+      "icon": "⚡",
+      "group": "admin"
+    }
+  ],
+  "actions": [
+    {
+      "id": "view",
+      "label": "View"
+    },
+    {
+      "id": "add",
+      "label": "Add"
+    },
+    {
+      "id": "edit",
+      "label": "Edit"
+    },
+    {
+      "id": "delete",
+      "label": "Delete"
+    },
+    {
+      "id": "export",
+      "label": "Export"
+    }
+  ],
+  "users": [
+    {
+      "userId": 1,
+      "username": "admin",
+      "role": "admin",
+      "permissions": {
+        "dashboard": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "patients": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "appointments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "calendar": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "treatments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "doctors": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "waiting": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "finance": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "inventory": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "installments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "commissions": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "discount_codes": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "analytics": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "messages": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "passwords": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "settings": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "backup": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "recip": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "prescription": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "abilities": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        }
+      }
+    },
+    {
+      "userId": 2,
+      "username": "manager",
+      "role": "manager",
+      "permissions": {
+        "dashboard": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "patients": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "appointments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "calendar": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "treatments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "doctors": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": true
+        },
+        "waiting": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "finance": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "inventory": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "installments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "commissions": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": true
+        },
+        "discount_codes": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "analytics": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": true
+        },
+        "messages": {
+          "view": true,
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "settings": {
+          "view": true,
+          "add": false,
+          "edit": true,
+          "delete": false,
+          "export": false
+        },
+        "backup": {
+          "view": true,
+          "add": true,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "recip": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "prescription": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "abilities": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": false
+        }
+      }
+    },
+    {
+      "userId": 3,
+      "username": "Doctor",
+      "role": "doctor",
+      "permissions": {}
+    },
+    {
+      "userId": 10,
+      "username": "receptionist",
+      "role": "receptionist",
+      "permissions": {
+        "dashboard": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "patients": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": false,
+          "export": false
+        },
+        "appointments": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": false
+        },
+        "calendar": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "treatments": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "waiting": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "discount_codes": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "recip": {
+          "view": true,
+          "add": true,
+          "edit": true,
+          "delete": true,
+          "export": true
+        },
+        "prescription": {
+          "view": true,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": false
+        },
+        "abilities": {
+          "view": false,
+          "add": false,
+          "edit": false,
+          "delete": false,
+          "export": false
+        }
+      }
+    }
+  ]
+}

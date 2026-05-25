@@ -1,0 +1,30 @@
+{
+  "clinic": {
+    "name": "DentCare Pro",
+    "address": "",
+    "phone": "01222263323",
+    "email": "fadeldachwaly@gmail.com",
+    "logo": "",
+    "currency": "EGP",
+    "timezone": "Africa/Cairo",
+    "whatsapp": "01222263323"
+  },
+  "appearance": {
+    "theme": "dark",
+    "accentColor": "#00d4ff",
+    "language": "en",
+    "dateFormat": "YYYY-MM-DD",
+    "timeFormat": "24h"
+  },
+  "notifications": {
+    "appointmentReminders": true,
+    "lowStockAlerts": true,
+    "passwordRequests": true
+  },
+  "system": {
+    "autoBackup": true,
+    "backupFormat": "json",
+    "sessionTimeout": 60
+  },
+  "doctors": []
+}
